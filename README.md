@@ -15,7 +15,7 @@
 ### Configuration Management Tools
 * Puppet
 
-### Continuous Intergration and Continuous Delivery Deployment
+### Continuous Intergration and Continuous Deployment
 * CI Server: Buildkite - A Melbourne base company. Free trial for student
 
 ## Amazon Simple Email Service (SES)
