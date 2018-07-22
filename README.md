@@ -1,24 +1,24 @@
-# README
+# Share Fleets Infrastructure
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### AWS EC2
+* t2.Micro with elastic I.P address
 
-Things you may want to cover:
+### AWS Route 53
+* sharefleets.com (optional)
+* pricing : A$12.00 - one year
 
-* Ruby version
+### Logging & Monitoring
+1. Cloudwatch - monitoring
+2. Splunk - log forwarding service 
+3. Elastic Search, Logstash, Kibana also known as ELK stack 
 
-* System dependencies
+### Configuration Management Tools
+* Puppet
 
-* Configuration
+### Continuous Intergration and Continuos Delivery Deployment
+* CI Server: Buildkite - A Melbourne base company. Free trial for student
 
-* Database creation
+## Amazon Simple Email Service (SES)
+* email:  booking, passcode and billing
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
