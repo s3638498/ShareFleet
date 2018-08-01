@@ -3,7 +3,7 @@
 ## Share Fleets Infrastructure
 
 #### AWS EC2: t2.micro 
-> [sharefleets public DNS](ec2-54-66-162-34.ap-southeast-2.compute.amazonaws.com:3000)
+> [sharefleets public DNS](http://ec2-54-66-162-34.ap-southeast-2.compute.amazonaws.com:3000)
 
 > note:   
   Rails is running inside tmux on port 3000  
