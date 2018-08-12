@@ -18,7 +18,7 @@
   Puppet running on t2.medium, spin up when needed  
   if any reason need new instances to host Rails  
   login to console, add new node. On the agent node run `puppet agent --test`  
-  This will install necessary dependencies to runs Ruby & ROR
+  This will install necessary dependencies to runs Ruby & ROR  
 
 ### Login Credentials (*Links will expired in 14 days*)
 
