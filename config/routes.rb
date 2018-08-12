@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #route to root
+  root 'main#home'
+
+  #sign up
+  get '/signup',     to: 'users#signup'
+  get '/login',      to: 'users#login'
+  
+  #login
+
 end
