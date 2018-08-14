@@ -40,3 +40,6 @@ Rails.application.config.assets.precompile += %w( jquerysctipttop.css )
 
 # linearicons
 Rails.application.config.assets.precompile += %w( linearicons.css )
+
+#login background
+Rails.application.config.assets.precompile += %w( users.css )

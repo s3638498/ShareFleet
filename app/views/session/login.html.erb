@@ -1,0 +1,27 @@
+<% provide(:title, "Log in") %>
+<%= stylesheet_link_tag "users", media: "all" %>
+<body id="loginBackground">
+  <div class="leftRow">
+<div class="container-fluid col-md-4">
+  <h1>Login</h1>
+  <% if flash[:danger] %>
+    <div class="alert alert-danger"><%= flash[:danger] %><br>
+    <small>Forgot password? Click <%= link_to "here",signup_path %></small></div>
+  <% end %>
+<%= form_for :session, :url =>{:controller =>"session", :action => "create"}  do |f| %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+      <br>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <% if flash[:danger] %>
+      <p></p>
+      <% else %>
+      <p><small>Forgot password? Click <%= link_to "here",signup_path %></small></p>
+      <% end %>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+</div>
+</div>
+</body>

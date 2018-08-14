@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def signup
   end
  
-  private
-    def login
-    end
+  # private
+  #   def login
+  #   end
 end
