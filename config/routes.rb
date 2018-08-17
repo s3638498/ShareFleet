@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   #route to root
   root 'main#home'
 
-  #sign up
-  get '/signup',     to: 'users#signup'
-  # get '/login',      to: 'users#login'
+  match '/signup', to: 'users#signup', via: :all
   
   #login
   get    '/login',   to: 'session#new'
