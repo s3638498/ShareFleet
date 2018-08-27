@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_095835) do
+ActiveRecord::Schema.define(version: 2018_08_27_135940) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2018_08_27_095835) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password_checksum"
     t.string "type"
     t.string "first_name"
     t.string "last_name"
@@ -46,6 +45,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_095835) do
     t.string "driver_licence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "vehicles", force: :cascade do |t|
