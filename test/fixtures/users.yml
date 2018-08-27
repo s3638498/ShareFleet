@@ -2,8 +2,24 @@
 
 one:
   username: MyString
-  password_digest: MyString
+  password_checksum: MyString
+  type: 
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2018-08-27
+  email: MyString
+  contact_number: MyString
+  address: MyString
+  driver_licence: MyString
 
 two:
   username: MyString
-  password_digest: MyString
+  password_checksum: MyString
+  type: 
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2018-08-27
+  email: MyString
+  contact_number: MyString
+  address: MyString
+  driver_licence: MyString
