@@ -10,10 +10,12 @@ class SessionController < ApplicationController
       # Log the user in and redirect to the user's show page.
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to :controller => 'users', :action => 'show', :id => user.id
+      
+      redirect_back_or root_url
+      #redirect_to :controller => 'users', :action => 'show'
     else
       # Create an error message.
-      flash.now[:warning] = 'Invalid username/password combination'
+      flash.now[:warning] = "Invalid username/password combination"
       render 'login'
     end
   end

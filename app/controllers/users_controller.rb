@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:show, :edit, :update, :destroy]
+  before_action :admin_user,     only: [:index, :destroy]
 
   # GET /users
   def signup
-    
+    @users = Enduser.all
   end
   
   # GET /users
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = Enduser.find(params[:id])
   end
 
   # POST /users
@@ -41,7 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
       render :edit
     end
@@ -58,8 +61,29 @@ class UsersController < ApplicationController
       params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence)
     end
   
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
+  
+    # Before filters
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      else
+        @user = User.find(current_user.id)
+      end
+    end
+    
+    # Confirms the correct user.
+    def correct_user
       @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+    # Confirms an admin user.
+    def admin_user
+      puts "TEST"
+      puts current_user.class.name
+      puts "TEST"
+      redirect_to(root_url) unless current_user.class.name == "Administrator"
     end
 end

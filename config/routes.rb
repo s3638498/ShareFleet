@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get   '/signup',  to: 'users#new'
   post  '/signup',  to: 'users#create'
   
+  patch "/edit", :to => 'users#update'
+  
   #Users resource
   resources :users
   #Vehicle resource

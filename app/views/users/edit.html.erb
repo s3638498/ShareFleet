@@ -1,9 +1,9 @@
 <div class="container-fluid col-md-4">
     <div class="alert alert-primary" role="alert" style="margin-top:30px;">
-		<h2>Register an account</h2>
+		<h3>Update your account</h3>
 	</div>
 
-    <%= form_for(@user, url: signup_path) do |f| %>
+    <%= form_for(@user, url: edit_path) do |f| %>
         <%= render 'shared/error_messages' %>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -19,10 +19,6 @@
                 <%= f.email_field :email, placeholder: "Email", class: "form-control"%>
             </div>
             <div class="form-group col-md-6">
-                <%= f.label :date_of_birth %>
-                <%= f.date_field :date_of_birth, class: "form-control" %>
-            </div>
-            <div class="form-group col-md-6">
                 <%= f.label :contact_number %>
                 <%= f.text_field :contact_number, placeholder: "Eg: 0412345678", class: "form-control" %>
             </div>
@@ -35,10 +31,6 @@
             <%= f.label :address %>
             <%= f.text_field :address, placeholder: "123 Main St", class: "form-control" %>
         </div>
-        <div class="form-group">
-            <%= f.label :username %>
-            <%= f.text_field :username, placeholder: "Username", class: "form-control" %>
-        </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <%= f.label :password %>
@@ -48,8 +40,11 @@
                 <%= f.label :password_confirmation, "Confirmation" %>
                 <%= f.password_field :password_confirmation, placeholder: "Password", class: "form-control" %>
             </div>  
+            
         </div>
-
-        <%= f.submit "Create my account", class: "btn btn-primary btn-block" %>
+        <div class="form-group">
+            <%= f.submit "Save changes", class: "btn btn-primary btn-block" %>
+        </div>
+        
     <% end %>
 </div>

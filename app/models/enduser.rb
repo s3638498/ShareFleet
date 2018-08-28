@@ -14,7 +14,8 @@ class Enduser < User
     validates :password, presence: true,
     length: { minimum: 8 }, 
     format: { with: VALID_PASSWORD_REGEX,
-    message: "Must contain at least one uppercase letter, one special character, one number and one lowercase letter." }
+    message: "Must contain at least one uppercase letter, one special character, one number and one lowercase letter." },
+    allow_nil: true
     
     validates :first_name, presence: true,
     length: { minimum: 2, maximum: 50}
