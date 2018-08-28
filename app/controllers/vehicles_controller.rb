@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   # GET /vehicles
   def index
@@ -8,6 +8,7 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/1
   def show
+    @vehicle = Vehicle.find(params[:id])
   end
 
   # GET /vehicles/new
@@ -24,7 +25,8 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
 
     if @vehicle.save
-      redirect_to @vehicle, notice: 'Vehicle was successfully created.'
+      flash[:success] = "Successfully added vehicle!"
+      redirect_to :controller => 'vehicles', :action => 'show', :id => @vehicle.id
     else
       render :new
     end
@@ -46,13 +48,17 @@ class VehiclesController < ApplicationController
   end
 
   private
+    def vehicle_params
+      params.require(:vehicle).permit(:registration,:body,:make,:model,:odometer,:year,:colour,:status,:image)
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
     end
-
-    # Only allow a trusted parameter "white list" through.
-    def vehicle_params
-      params.fetch(:vehicle, {})
+    
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url) unless current_user.class.name == "Administrator"
     end
 end

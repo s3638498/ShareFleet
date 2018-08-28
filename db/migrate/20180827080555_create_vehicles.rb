@@ -6,7 +6,7 @@ class CreateVehicles < ActiveRecord::Migration[5.2]
       t.string :make
       t.string :model
       t.integer :odometer
-      t.date :year
+      t.string :year
       t.string :colour
       t.string :status
 

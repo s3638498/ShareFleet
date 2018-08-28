@@ -1,0 +1,11 @@
+<%= @vehicle.registration %>
+
+<!-- app/views/posts/show.html.erb -->
+<% if @vehicle.image.attached? %>
+<!-- @post.image.present? will always return true, use attached? to check presence -->
+  <p>
+    <strong>Image:</strong>
+    <br>
+    <%= image_tag @vehicle.image %>
+  </p>
+<% end %>

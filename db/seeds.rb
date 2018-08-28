@@ -22,4 +22,59 @@
 end
 
 Administrator.create!(username: "admin", password: "Password!23")
+
+
+Vehicle.create!(
+  registration: "VIC001", 
+  body: "Sedan", 
+  make: "Honda",
+  model: "Civic",
+  odometer: "2002",
+  year: "2017",
+  colour: "Blue",
+  status: "Available"
+  )
   
+Vehicle.create!(
+  registration: "VIC002", 
+  body: "Hatch", 
+  make: "Toyota",
+  model: "Corolla",
+  odometer: "212121",
+  year: "2016",
+  colour: "White",
+  status: "Available"
+  )
+  
+Vehicle.create!(
+  registration: "VIC003", 
+  body: "Ute", 
+  make: "Ford",
+  model: "Ranger",
+  odometer: "1123",
+  year: "2013",
+  colour: "Black",
+  status: "Available"
+  )
+  
+Vehicle.create!(
+  registration: "VIC004", 
+  body: "Hatch", 
+  make: "Mazda",
+  model: "Nep",
+  odometer: "63535",
+  year: "2011",
+  colour: "White",
+  status: "Available"
+  )
+  
+Vehicle.create!(
+  registration: "VIC005", 
+  body: "Hatch", 
+  make: "Hyundai",
+  model: "Getz",
+  odometer: "8943",
+  year: "2008",
+  colour: "Pink",
+  status: "Available"
+  )

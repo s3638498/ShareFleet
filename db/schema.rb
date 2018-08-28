@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_120219) do
     t.string "make"
     t.string "model"
     t.integer "odometer"
-    t.date "year"
+    t.string "year"
     t.string "colour"
     t.string "status"
     t.datetime "created_at", null: false

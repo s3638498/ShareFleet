@@ -6,7 +6,7 @@ class Enduser < User
     presence: true, 
     length: { minimum:3, maximum: 50 },
     format: { with: VALID_USERNAME_REGEX ,
-    message: "Can only contain letters, digits, dashes and underscores." },
+    message: "can only contain letters, digits, dashes and underscores." },
     uniqueness: true
     
     has_secure_password
@@ -14,7 +14,7 @@ class Enduser < User
     validates :password, presence: true,
     length: { minimum: 8 }, 
     format: { with: VALID_PASSWORD_REGEX,
-    message: "Must contain at least one uppercase letter, one special character, one number and one lowercase letter." },
+    message: "must contain at least one uppercase letter, one special character, one number and one lowercase letter." },
     allow_nil: true
     
     validates :first_name, presence: true,
@@ -34,7 +34,7 @@ class Enduser < User
     validates :contact_number, presence: true,
     length: { minimum: 8, maximum: 10},
     format: { with: VALID_NUMBER_REGEX,
-    message: "Must contain only numbers."}
+    message: "must contain only numbers."}
     
     validates :address, presence: true
     
@@ -42,7 +42,7 @@ class Enduser < User
     validates :driver_licence, presence: true,
     length: { minimum: 9, maximum: 9},
     format: { with: VALID_NUMBER_REGEX,
-    message: "Must contain only numbers."}
+    message: "must contain only numbers."}
     
 
     # Returns the hash digest of the given string.

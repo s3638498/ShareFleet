@@ -11,9 +11,9 @@ class VehicleTest < ActiveSupport::TestCase
       make: "Honda",
       model: "Civic",
       odometer: "2002",
-      year: Date.new(2017, 1, 1),
+      year: "2017",
       colour: "Blue",
-      status: "Available",
+      status: "Available"
       )
   end
   

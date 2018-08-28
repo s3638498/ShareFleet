@@ -4,18 +4,19 @@ Rails.application.routes.draw do
   root 'main#home'
 
   
-  #login
+  #User add, edit and login
   get    '/login',   to: 'session#new'
   post   '/login',   to: 'session#create'
   delete '/login',  to: 'session#destroy'
-  
   get   '/signup',  to: 'users#new'
   post  '/signup',  to: 'users#create'
-  
   patch "/edit", :to => 'users#update'
+  
+  #Vehicle
+  get   '/addvehicle',  to: 'vehicles#new'
   
   #Users resource
   resources :users
   #Vehicle resource
-  
+  resources :vehicles
 end
