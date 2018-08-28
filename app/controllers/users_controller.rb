@@ -8,16 +8,17 @@ class UsersController < ApplicationController
   
   # GET /users
   def index
-    @users = User.all
+    @users = Enduser.all
   end
 
   # GET /users/1
   def show
+    @user = Enduser.find(params[:id])
   end
 
   # GET /users/new
   def new
-    @user = User.new
+    @user = Enduser.new
   end
 
   # GET /users/1/edit
@@ -26,10 +27,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = Enduser.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      flash[:success] = "Successfully created account!"
+      redirect_to root_url
     else
       render :new
     end
@@ -51,13 +53,12 @@ class UsersController < ApplicationController
   end
 
   private
+    def user_params
+      params.require(:user).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence)
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.fetch(:user, {})
     end
 end
