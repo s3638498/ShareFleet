@@ -31,7 +31,8 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Successfully created account!"
-      redirect_to root_url
+      log_in @user
+      redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
       render :new
     end
