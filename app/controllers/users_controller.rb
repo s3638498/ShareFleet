@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:show, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:show, :edit, :destroy]
   before_action :admin_user,     only: [:index, :destroy]
 
   # GET /users
@@ -44,7 +44,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to :controller => 'users', :action => 'show', :id => @user.id
+      flash[:success] = "Successfully updated account!"
+      redirect_to :controller => 'users', :action => 'edit', :id => @user.id
     else
       render :edit
     end
@@ -81,9 +82,6 @@ class UsersController < ApplicationController
     end
     # Confirms an admin user.
     def admin_user
-      puts "TEST"
-      puts current_user.class.name
-      puts "TEST"
       redirect_to(root_url) unless current_user.class.name == "Administrator"
     end
 end
