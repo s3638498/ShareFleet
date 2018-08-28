@@ -7,6 +7,16 @@
 
   <body>  
     <%= render 'layouts/header' %>
+    <div class="container">
+      
+      <%#Flash success or error messge %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      
+    <%#Yields content of the page %>
     <%= yield %>
+    
+    </div>
   </body>
 </html>

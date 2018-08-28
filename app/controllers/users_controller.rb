@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence)
+      params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence)
     end
   
     # Use callbacks to share common setup or constraints between actions.
