@@ -1,4 +1,6 @@
 class Administrator < User
+    attr_accessor :remember_token
+    
     VALID_USERNAME_REGEX = /\A[A-Za-z0-9_-]*\z/
     validates :username,  
     presence: true, 
@@ -13,4 +15,33 @@ class Administrator < User
     length: { minimum: 8 }, 
     format: { with: VALID_PASSWORD_REGEX,
     message: "Must contain at least one uppercase letter, one special character, one number and one lowercase letter." }
+    
+    # Returns the hash digest of the given string.
+    def Administrator.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                              BCrypt::Engine.cost
+        BCrypt::Password.create(string, cost: cost)
+    end
+    
+    # Returns a random token.
+    def Administrator.new_token
+        SecureRandom.urlsafe_base64
+    end
+    
+    # Remembers a user in the database for use in persistent sessions.
+    def remember
+        self.remember_token = Administrator.new_token
+        update_attribute(:remember_digest, Administrator.digest(remember_token))
+    end
+    
+    # Returns true if the given token matches the digest.
+    def authenticated?(remember_token)
+        return false if remember_digest.nil?
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+    
+    # Forgets a user.
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
 end
