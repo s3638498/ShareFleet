@@ -1,5 +1,8 @@
 class VehiclesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:destroy]
   before_action :admin_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :set_vehicle, only: [:update, :destroy]
+ 
 
   # GET /vehicles
   def index
@@ -18,15 +21,15 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/1/edit
   def edit
+    @vehicle = Vehicle.find(params[:id])
   end
 
   # POST /vehicles
   def create
     @vehicle = Vehicle.new(vehicle_params)
-
     if @vehicle.save
       flash[:success] = "Successfully added vehicle!"
-      redirect_to :controller => 'vehicles', :action => 'show', :id => @vehicle.id
+      redirect_to :controller => 'vehicles', :action => 'index'
     else
       render :new
     end
@@ -35,7 +38,8 @@ class VehiclesController < ApplicationController
   # PATCH/PUT /vehicles/1
   def update
     if @vehicle.update(vehicle_params)
-      redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
+      flash[:success] = "Successfully updated vehicle!"
+      render :edit
     else
       render :edit
     end
@@ -44,7 +48,8 @@ class VehiclesController < ApplicationController
   # DELETE /vehicles/1
   def destroy
     @vehicle.destroy
-    redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.'
+    flash[:success] = "Deleted vehicle!"
+    redirect_to :controller => 'vehicles', :action => 'index'
   end
 
   private

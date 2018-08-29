@@ -1,0 +1,44 @@
+<div class="alert alert-primary" role="alert" style="margin-top:30px;">
+	<h2>Vehicles</h2>
+</div>
+<% if @vehicles.empty? %>
+    <h4>No vehicles in the system</h2>
+<% else %>
+    <% @vehicles.each do |vec| %>
+        <%= link_to controller: "vehicles", action: "edit", id: vec.id do %>
+            <div class="row border">
+                <div class="col-d-2 border align=center">
+                    <% if vec.image.attached? %>
+                        <%= image_tag vec.image, :width => '100px' %>
+                    <% else %>
+                        <% if vec.body == "Ute" %>
+                            <%= image_tag "uteSil.png", alt: "Ute", :width => '100px' %>
+                        <% elsif vec.body == "Sedan" %>
+                            <%= image_tag "sedanSil.png", alt: "Sedan", :width => '100px' %>
+                        <% elsif vec.body == "Hatch" %>
+                            <%= image_tag "hatchSil.png", alt: "Hatch", :width => '100px' %>
+                        <% elsif vec.body == "SUV" %>
+                            <%= image_tag "suvSil.png", alt: "SUV", :width => '100px' %>
+                        <% else%>
+                            <%= image_tag "sedanSil.png", alt: "Default", :width => '100px' %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="col-md-8 align=center ">
+                    <div class="row">
+                        <div class="col-md-3"><%= vec.registration %></div>
+                        <div class="col-md-3"><%= vec.body %></div>
+                        <div class="col-md-3"><%= vec.make %></div>
+                        <div class="col-md-3"><%= vec.model %></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"><%= vec.odometer %> km</div>
+                        <div class="col-md-3"><%= vec.year %></div>
+                        <div class="col-md-3"><%= vec.colour %></div>
+                        <div class="col-md-3"><%= vec.status %></div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>

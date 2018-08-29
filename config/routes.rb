@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   #Vehicle
   get   '/addvehicle',  to: 'vehicles#new'
+  patch "/editvehicle", :to => 'vehicles#update'
+  patch "/deletevehicle", to: 'vehicles#destroy'
   
   #Users resource
   resources :users
