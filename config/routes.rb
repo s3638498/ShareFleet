@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   resources :users
   #Vehicle resource
   resources :vehicles
+  #Location resources
+  resources :locations
 end
