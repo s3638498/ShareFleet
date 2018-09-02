@@ -1,24 +1,42 @@
-<div class="container-fluid col-md-10">
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+    
+    Index page for the locations page.
+%>
+
+<div class="container-fluid col-md-12">
     <div class="alert alert-primary" role="alert" style="margin-top:30px;">
 		<h2>All Parking Locations</h2></h2>
 	</div>
 	<div class="list-group">
 	    <% if @locations.empty? %>
-            <h4>No Parking locations in the system</h2>
+            <h4>No parking locations in the system</h2>
         <% else %>
             <% @locations.each do |location| %>
                 <li class="list-group-item">
-                    <div class="d-flex w-100 justify-content-md-left">
-                        <h7 class="mb-1">Location name: <%= location.name %></h7>
-                    </div>
-                    <div class="d-flex w-100 justify-content-md-left">
-                        <h7 class="mb-1">Number of parking: <%= location.num_park %></h7>
-                    </div>
-                    <div class="d-flex w-100 justify-content-md-left">
-                        <h7 class="mb-1">Longitude: <%= location.longitude %></h7>
-                    </div>
-                    <div class="d-flex w-100 justify-content-md-left">
-                        <h7 class="mb-1">Latitude #: <%= location.latitude %></h7>
+                    <div class="form-row">
+                        <div class="list-group-row col-md-6">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 text-danger font-weight-bold"><%= location.name %></h7>
+                            </div>
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1">No. spaces: <%= location.num_park %></h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-2">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1">Longitude: <%= location.longitude %></h7>
+                            </div>
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1">Latitude: <%= location.latitude %></h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-4">
+                            <div class="d-flex w-100 justify-content-md-center">
+                                <%= button_to "Edit", {action: "edit", id: location.id}, {class:"btn btn-primary", :method => :get } %>
+                            </div>
+                        </div>
                     </div>
                 </li>
             <% end %>

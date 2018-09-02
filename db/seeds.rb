@@ -78,3 +78,40 @@ Vehicle.create!(
   colour: "Pink",
   status: "Available"
   )
+  
+  
+Location.create!(
+  name: "City Bath", 
+  num_park: "3",
+  latitude: "-37.807364",
+  longitude: "144.963362"
+  )
+  
+Location.create!(
+  name: "Orr st", 
+  num_park: "2",
+  latitude: "-37.806682",
+  longitude: "144.965143"
+  )
+  
+Location.create!(
+  name: "Bowen st", 
+  num_park: "1",
+  latitude: "-37.809236",
+  longitude: "144.964877"
+  )
+  
+Location.create!(
+  name: "Russell st", 
+  num_park: "1",
+  latitude: "-37.809422",
+  longitude: "144.966486"
+  )
+  
+
+Location.create!(
+  name: "Swanston st", 
+  num_park: "1",
+  latitude: "-37.810600",
+  longitude: "144.964238"
+  )

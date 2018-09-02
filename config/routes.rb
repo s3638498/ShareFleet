@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   patch "/editvehicle", :to => 'vehicles#update'
   patch "/deletevehicle", to: 'vehicles#destroy'
   
+  #Location
+  patch "/deletelocation", to: 'locations#destroy'
+  
   #Users resource
   resources :users
   #Vehicle resource

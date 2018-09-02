@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
     if params[:search].present?
       @locations = Location.near(params[:search], 50, :order => :distance)
     else
-      @locations = Location.all
+      @locations = Location.all.order(:name)
     end
   end
 
@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
     @location = Location.new(allowed_params)
     if @location.save
       flash[:success] = "Successfully added Parking location!"
-      redirect_to @location
+      redirect_to action: "index"
     else
       render :new
     end
@@ -36,7 +36,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(allowed_params)
       flash[:success] = "Successfully updated Parking location!"
-      redirect_to @location, :notice  => "Successfully updated location."
+      redirect_to action: "index"
     else
       render :edit
     end
