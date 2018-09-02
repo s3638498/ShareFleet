@@ -7,10 +7,6 @@
   <%= @location.num_park %>
 </p>
 <p>
-  <strong>Address:</strong>
-  <%= @location.address %>
-</p>
-<p>
   <strong>Latitude:</strong>
   <%= @location.latitude %>
 </p>
@@ -19,7 +15,7 @@
   <%= @location.longitude %>
 </p>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=900x600&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
 
 <h3>Nearby locations</h3>
 <ul>

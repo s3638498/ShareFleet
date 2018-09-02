@@ -63,4 +63,9 @@ module SessionHelper
   def administrator?
     current_user.class.name == "Administrator" ? true : false
   end
+  
+  # Confirms an admin user.
+  def admin_user
+    redirect_to(root_url) unless current_user.class.name == "Administrator"
+  end
 end

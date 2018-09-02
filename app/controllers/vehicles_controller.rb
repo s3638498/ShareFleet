@@ -61,9 +61,4 @@ class VehiclesController < ApplicationController
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
     end
-    
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless current_user.class.name == "Administrator"
-    end
 end

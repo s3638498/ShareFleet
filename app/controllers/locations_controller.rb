@@ -1,4 +1,7 @@
 class LocationsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:destroy]
+  before_action :admin_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  
   def index
     if params[:search].present?
       @locations = Location.near(params[:search], 50, :order => :distance)
@@ -18,7 +21,8 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(allowed_params)
     if @location.save
-      redirect_to @location, :notice => "Successfully created location."
+      flash[:success] = "Successfully added Parking location!"
+      redirect_to @location
     else
       render :new
     end
@@ -30,7 +34,8 @@ class LocationsController < ApplicationController
 
   def update
     @location = Location.find(params[:id])
-    if @location.update_attributes(allowed_params)
+    if @location.update(allowed_params)
+      flash[:success] = "Successfully updated Parking location!"
       redirect_to @location, :notice  => "Successfully updated location."
     else
       render :edit
@@ -40,8 +45,8 @@ class LocationsController < ApplicationController
   def destroy
     @location = Location.find(params[:id])
     @location.destroy
-
-    redirect_to locations_url, :notice => "Successfully destroyed location."
+    flash[:success] = "Successfully deleted Parking location!"
+    redirect_to locations_url
   end
 
   private

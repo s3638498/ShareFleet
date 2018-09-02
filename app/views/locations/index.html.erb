@@ -1,28 +1,27 @@
-<%= form_tag locations_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
-  </p>
-<% end %>
-
-<table>
-  <tr>
-    <th>Address</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-  </tr>
-  <% for location in @locations %>
-    <tr>
-      <td><%= location.name %></td>
-      <td><%= location.num_park %></td>
-      <td><%= location.address %></td>
-      <td><%= location.latitude %></td>
-      <td><%= location.longitude %></td>
-      <td><%= link_to "Show", location %></td>
-      <td><%= link_to "Edit", edit_location_path(location) %></td>
-      <td><%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Location", new_location_path %></p>
+<div class="container-fluid col-md-10">
+    <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		<h2>All Parking Locations</h2></h2>
+	</div>
+	<div class="list-group">
+	    <% if @locations.empty? %>
+            <h4>No Parking locations in the system</h2>
+        <% else %>
+            <% @locations.each do |location| %>
+                <li class="list-group-item">
+                    <div class="d-flex w-100 justify-content-md-left">
+                        <h7 class="mb-1">Location name: <%= location.name %></h7>
+                    </div>
+                    <div class="d-flex w-100 justify-content-md-left">
+                        <h7 class="mb-1">Number of parking: <%= location.num_park %></h7>
+                    </div>
+                    <div class="d-flex w-100 justify-content-md-left">
+                        <h7 class="mb-1">Longitude: <%= location.longitude %></h7>
+                    </div>
+                    <div class="d-flex w-100 justify-content-md-left">
+                        <h7 class="mb-1">Latitude #: <%= location.latitude %></h7>
+                    </div>
+                </li>
+            <% end %>
+        <% end %>
+    </div>
+</div>
