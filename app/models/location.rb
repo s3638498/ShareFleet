@@ -2,6 +2,7 @@ class Location < ApplicationRecord
   #Testing Geocoding by Address, result: With the default geocoder API, it is very inaccurate, more accurate to use the Coordinates.
   #geocoded_by :address
   #after_validation :geocode
+  has_many :vehicles 
   
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode

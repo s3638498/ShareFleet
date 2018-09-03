@@ -1,6 +1,7 @@
 class Vehicle < ApplicationRecord
     #Allow an image attachment using Active storage
     has_one_attached :image
+    belongs_to :location
     
     scope :with_eager_loaded_images, -> { eager_load(images_attachments: :blob) }
     
