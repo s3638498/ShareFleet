@@ -1,9 +1,16 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Vehicle controller methods
+=end
+
 class VehiclesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:destroy]
   before_action :admin_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :set_vehicle, only: [:update, :destroy]
+  before_action :getConstants, only: [:index, :show, :new, :create, :edit, :update, :destroy]
  
-
   # GET /vehicles
   def index
     @vehicles = Vehicle.all.order(:registration)
@@ -39,7 +46,7 @@ class VehiclesController < ApplicationController
   def update
     if @vehicle.update(vehicle_params)
       flash[:success] = "Successfully updated vehicle!"
-      render :edit
+      redirect_to :action => 'edit', :id => @vehicle.id
     else
       render :edit
     end
@@ -60,5 +67,10 @@ class VehiclesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
+    end
+    
+    def getConstants
+      @BODYTYPE = ["Ute", "Sedan", "Hatch", "SUV"]
+      @STATUSES = [ "Available", "Locked", "Unlocked", "Service" ]
     end
 end

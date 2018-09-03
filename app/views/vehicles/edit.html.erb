@@ -1,3 +1,10 @@
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Edit view
+%>
+
 <div class="container-fluid col-md-8">
     <div class="alert alert-primary" role="alert" style="margin-top:30px;">
 		<h2>Edit Vehicle</h2>
@@ -5,7 +12,7 @@
     <%= form_for(@vehicle, url: editvehicle_path) do |f| %>
         <%= hidden_field_tag(:id, value = @vehicle.id) %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= render partial: "vehicleform", locals: {f: f} %>
+        <%= render partial: "vehicleform", locals: {f: f, vehicle: @vehicle} %>
         <%= f.submit "Save Vehicle", class: "btn btn-primary btn-block" %>
         <%= f.submit "Delete", formaction: deletevehicle_path, class: "btn btn-danger btn-block" %>
     <% end %>
