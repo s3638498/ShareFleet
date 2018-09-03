@@ -14,11 +14,18 @@ Rails.application.routes.draw do
   
   #Vehicle
   get   '/addvehicle',  to: 'vehicles#new'
-  patch "/editvehicle", :to => 'vehicles#update'
+  patch "/editvehicle", to: 'vehicles#update'
   patch "/deletevehicle", to: 'vehicles#destroy'
   
   #Location
   patch "/deletelocation", to: 'locations#destroy'
+  put "/assigntolocation", to: 'locations#assignvehicletolocation'
+  put "/deletefromlocation", to: 'locations#removevehiclefromlocation'
+  resources :locations do
+    member do
+      get 'assignvehicle'
+    end
+  end
   
   #Users resource
   resources :users

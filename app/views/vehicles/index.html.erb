@@ -2,7 +2,7 @@
 	<h2>Vehicles</h2>
 </div>
 <% if @vehicles.empty? %>
-    <h4>No vehicles in the system</h2>
+    <h4>No vehicles in the system</h4>
 <% else %>
     <% @vehicles.each do |vec| %>
         <%= link_to controller: "vehicles", action: "edit", id: vec.id do %>
