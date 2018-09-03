@@ -45,7 +45,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(allowed_params)
       flash[:success] = "Successfully updated Parking location!"
-      redirect_to action: "index"
+      redirect_to :action => 'edit', :id => @location.id
     else
       render :edit
     end
