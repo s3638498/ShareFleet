@@ -1,3 +1,10 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Enduser model extended from the User superclass
+=end
+
 class Enduser < User
     attr_accessor :remember_token
     

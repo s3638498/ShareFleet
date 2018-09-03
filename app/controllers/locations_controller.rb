@@ -1,3 +1,11 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Locations controller methods
+=end
+
+
 class LocationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:destroy]
   before_action :admin_user, only: [:index, :show, :new, :create, :edit, :update, :destroy, :assignvehicletolocation, :removevehiclefromlocation, :assignvehicle]

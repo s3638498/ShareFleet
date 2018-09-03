@@ -1,3 +1,11 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Vehicle model and validation
+=end
+
+
 class Vehicle < ApplicationRecord
     #Allow an image attachment using Active storage
     has_one_attached :image
@@ -14,7 +22,7 @@ class Vehicle < ApplicationRecord
     validates :body, presence: true
     validates :make, presence: true
     validates :model, presence: true
-    validates :odometer, presence: true
+    validates :odometer, presence: true, numericality: { greater_than: 0 }
     
     VALID_YEAR_REGEX = /\A[12][0-9]*\z/
     validates :year, presence: true,

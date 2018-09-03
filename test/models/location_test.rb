@@ -1,3 +1,10 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Unit testing for Locations
+=end
+
 require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase

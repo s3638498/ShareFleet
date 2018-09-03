@@ -1,44 +1,83 @@
-<div class="alert alert-primary" role="alert" style="margin-top:30px;">
-	<h2>Vehicles</h2>
-</div>
-<% if @vehicles.empty? %>
-    <h4>No vehicles in the system</h4>
-<% else %>
-    <% @vehicles.each do |vec| %>
-        <%= link_to controller: "vehicles", action: "edit", id: vec.id do %>
-            <div class="row border">
-                <div class="col-d-2 border align=center">
-                    <% if vec.image.attached? %>
-                        <%= image_tag vec.image, :width => '100px' %>
-                    <% else %>
-                        <% if vec.body == "Ute" %>
-                            <%= image_tag "uteSil.png", alt: "Ute", :width => '100px' %>
-                        <% elsif vec.body == "Sedan" %>
-                            <%= image_tag "sedanSil.png", alt: "Sedan", :width => '100px' %>
-                        <% elsif vec.body == "Hatch" %>
-                            <%= image_tag "hatchSil.png", alt: "Hatch", :width => '100px' %>
-                        <% elsif vec.body == "SUV" %>
-                            <%= image_tag "suvSil.png", alt: "SUV", :width => '100px' %>
-                        <% else%>
-                            <%= image_tag "sedanSil.png", alt: "Default", :width => '100px' %>
-                        <% end %>
-                    <% end %>
-                </div>
-                <div class="col-md-8 align=center ">
-                    <div class="row">
-                        <div class="col-md-3"><%= vec.registration %></div>
-                        <div class="col-md-3"><%= vec.body %></div>
-                        <div class="col-md-3"><%= vec.make %></div>
-                        <div class="col-md-3"><%= vec.model %></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3"><%= vec.odometer %> km</div>
-                        <div class="col-md-3"><%= vec.year %></div>
-                        <div class="col-md-3"><%= vec.colour %></div>
-                        <div class="col-md-3"><%= vec.status %></div>
-                    </div>
-                </div>
-            </div>
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+    
+    Index page for the locations page.
+%>
+
+<div class="container-fluid col-md-12">
+    <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		<h2>All Vehicles</h2>
+	</div>
+	<div class="list-group">
+	    <% if @vehicles.empty? %>
+            <h4>No vehicles in the system</h4>
+        <% else %>
+            <% @vehicles.each do |vec| %>
+                <%= link_to controller: "vehicles", action: "edit", id: vec.id do %>
+                    <li class="list-group-item">
+                        <div class="form-row">
+                            <div class="list-group-row col-md-2">
+                                <div class="col-d-2 align=center">
+                                    <% if vec.image.attached? %>
+                                        <%= image_tag vec.image, :width => '100px' %>
+                                    <% else %>
+                                        <% if vec.body == "Ute" %>
+                                            <%= image_tag "uteSil.png", alt: "Ute", :width => '100px' %>
+                                        <% elsif vec.body == "Sedan" %>
+                                            <%= image_tag "sedanSil.png", alt: "Sedan", :width => '100px' %>
+                                        <% elsif vec.body == "Hatch" %>
+                                            <%= image_tag "hatchSil.png", alt: "Hatch", :width => '100px' %>
+                                        <% elsif vec.body == "SUV" %>
+                                            <%= image_tag "suvSil.png", alt: "SUV", :width => '100px' %>
+                                        <% else%>
+                                            <%= image_tag "sedanSil.png", alt: "Default", :width => '100px' %>
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-2">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= vec.registration %></h7>
+                                </div>
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1"><%= vec.make %> <%= vec.model %></h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-2">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1">Odometer: <%= vec.odometer %> km</h7>
+                                </div>
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1">Year: <%= vec.year %></h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-2">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1">Body: <%= vec.body %></h7>
+                                </div>
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1">Colour: <%= vec.colour %></h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-2">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1">Status:&nbsp</h7>
+                                    <h7 class="mb-1 text-primary font-weight-bold"><%= vec.status %></h7>
+                                </div>
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <% if defined?(vec.location.name) %>
+                                        <h7 class="mb-1">Located at:&nbsp</h7>
+                                        <h7 class="mb-1 text-primary font-weight-bold"><%= vec.location.name %></h7>
+                                    <% else %> 
+                                        <h7 class="mb-1"> Vehicle has not been assigned.</h7>
+                                    <% end %> 
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            <% end %>
         <% end %>
-    <% end %>
-<% end %>
+    </div>
+</div>

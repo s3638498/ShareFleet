@@ -1,3 +1,10 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Vehicle model and validation
+=end
+
 class Location < ApplicationRecord
   #Testing Geocoding by Address, result: With the default geocoder API, it is very inaccurate, more accurate to use the Coordinates.
   #geocoded_by :address
