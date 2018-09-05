@@ -4,12 +4,42 @@
 	<%= render 'layouts/head' %>
 	</head>
 	<body>
+                <!--start of seach bar --> 
+		<div class="container">
+		    <br/>
+			<div class="googleSearch row justify-content-center">
+		           <div class="col-12 col-md-10 col-lg-8">
+		               <form class="card card-sm">
+		                   <div class="card-body row no-gutters align-items-center">
+		                       <div class="col-auto">
+		                           <i class="fas fa-search h4 text-body"></i>
+		                       </div>
+		                       <!--end of col-->
+		                       <div class="searchBar col">
+		                                <input id="spac-input" class="form-control form-control-lg form-control-borderless" name="locationSearch" type="text" placeholder="Search by postcode e.g 3000">
+		                                <!--<input id="pac-input" class="form-control form-control-lg form-control-borderless" name="locationSearch" type="search" placeholder="Search by postcode e.g 3000">-->
+		                       </div>
+		                       <!--end of col-->
+		                       <div class="col-auto">
+		                           <button class="btn btn-lg btn-success" type="text" name="">Search</button>
+		                       </div>
+		                       <!--end of col-->
+		                   </div>
+		               </form>
+		           </div>
+		           <!--end of col-->
+		        </div>
+		</div>
+                <!--start of seach bar --> 
 
+
+                <input id="pac-input" class="controls" type="text" placeholder="start typing here">
 		<!-- start banner Area -->
 		<section class="banner-area relative" id="home">
 
-
 			<div class="overlay overlay-bg"></div>	
+                            <div id="googleMaps">
+                            </div>
 			<div class="container">
 				<div class="row fullscreen d-flex align-items-center justify-content-center">
 					<div class="banner-content col-lg-7 col-md-6 ">
@@ -266,4 +296,5 @@
 </html>
 
 
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0&libraries=places&callback=initMap">
+</script>
