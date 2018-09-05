@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   patch "/deletevehicle", to: 'vehicles#destroy'
   
   #Users resource
-  resources :users
+  resources :users do
+    member {patch :reactivate}
+    member {patch :deactivate}
+  end
   #Vehicle resource
   resources :vehicles
 end

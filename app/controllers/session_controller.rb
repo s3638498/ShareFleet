@@ -6,17 +6,21 @@ class SessionController < ApplicationController
 
   def create
     user = User.find_by(username: params[:session][:username])
-    if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password]) && user.locked == false
       # Log the user in and redirect to the user's show page.
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       
       redirect_back_or root_url
       #redirect_to :controller => 'users', :action => 'show'
+    else if user && user.authenticate(params[:session][:password]) && user.locked == true
+      flash.now[:warning] = "Account has been locked, please contact the admin"
+      render 'login'
     else
       # Create an error message.
       flash.now[:warning] = "Invalid username/password combination"
       render 'login'
+    end
     end
   end
 
