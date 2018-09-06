@@ -14,7 +14,7 @@ class SessionController < ApplicationController
       redirect_back_or root_url
       #redirect_to :controller => 'users', :action => 'show'
     else if user && user.authenticate(params[:session][:password]) && user.locked == true
-      flash.now[:warning] = "Account has been locked, please contact the admin"
+      flash.now[:warning] = "Account has been locked, please contact Share Fleets."
       render 'login'
     else
       # Create an error message.
