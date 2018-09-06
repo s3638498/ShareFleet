@@ -1,3 +1,10 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Administrator model extended from the User superclass
+=end
+
 class Administrator < User
     attr_accessor :remember_token
     

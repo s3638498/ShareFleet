@@ -1,48 +1,17 @@
-<div class="container-fluid col-md-4">
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+
+    New vehicle view
+%>
+
+<div class="container-fluid col-md-8">
     <div class="alert alert-primary" role="alert" style="margin-top:30px;">
 		<h2>Add new Vehicle</h2>
 	</div>
     <%= form_for(@vehicle) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <%= f.label :registration %>
-                <%= f.text_field :registration, class: 'form-control', placeholder: "Eg.: VIC000" %>
-            </div>
-            <div class="form-group col-md-6">
-                <%= f.label :body %>
-                <%= f.text_field :body, placeholder: "Hatch, Sedan, Ute", class: "form-control" %>
-            </div>
-            <div class="form-group col-md-6">
-                <%= f.label :make %>
-                <%= f.text_field :make, placeholder: "Make", class: "form-control"%>
-            </div>
-            <div class="form-group col-md-6">
-                <%= f.label :model %>
-                <%= f.text_field :model, placeholder: "Model", class: "form-control"%>
-            </div>
-            <div class="form-group col-md-6">
-                <%= f.label :odometer %>
-                <%= f.number_field :odometer, placeholder: "Odometer", class: "form-control" %>
-            </div>
-            <div class="form-group col-md-6">
-                <%= f.label :year %>
-                <%= f.text_field :year, class: "form-control" %>
-            </div>
-        </div>
-        <div class="form-group">
-            <%= f.label :colour %>
-            <%= f.text_field :colour, placeholder: "Colour", class: "form-control" %>
-        </div>
-        <div class="form-group">
-            <%= f.label :status %>
-            <%= f.text_field :status, placeholder: "Status", class: "form-control" %>
-        </div>
-        <div class="form-group">
-            <%= f.label :image %>
-            <%= f.file_field :image, class: "form-control" %>
-        </div>
-
+        <%= render partial: "vehicleform", locals: {f: f} %>
         <%= f.submit "Add Vehicle", class: "btn btn-primary btn-block" %>
     <% end %>
 </div>

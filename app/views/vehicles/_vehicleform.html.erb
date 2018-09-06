@@ -1,0 +1,61 @@
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Partial of vehicle form
+%>
+
+<%
+    if defined?(vehicle)
+        vehicle_body = vehicle.body
+        vehicle_status = vehicle.status
+    elsif defined?(params[:vehicle])
+        if defined?(params[:vehicle][:body])
+            vehicle_body = params[:vehicle][:body]
+        end
+        if defined?(params[:vehicle][:status])
+            vehicle_status = params[:vehicle][:status]
+        end
+    end
+%>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <%= f.label :registration %>
+        <%= f.text_field :registration, class: 'form-control', placeholder: "Eg.: VIC000" %>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :body %>
+        <%= f.select :body, options_for_select(@BODYTYPE, vehicle_body), {prompt: "Select a body type"},  class: "form-control" %>
+        <%#= f.text_field :body, placeholder: "Hatch, Sedan, Ute", class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :make %>
+        <%= f.text_field :make, placeholder: "Make", class: "form-control"%>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :model %>
+        <%= f.text_field :model, placeholder: "Model", class: "form-control"%>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :odometer %>
+        <%= f.number_field :odometer, placeholder: "Odometer", class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :year %>
+        <%= f.text_field :year, class: "form-control" %>
+    </div>
+</div>
+<div class="form-group">
+    <%= f.label :colour %>
+    <%= f.text_field :colour, placeholder: "Colour", class: "form-control" %>
+</div>
+<div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(@STATUSES, vehicle_status), {prompt: "Select a status"},  class: "form-control" %>
+    <%#= f.text_field :status, placeholder: "Status", class: "form-control" %>
+</div>
+<div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+</div>

@@ -1,3 +1,10 @@
+=begin
+    Author: Ryan Tran
+    Student number: s3201690
+
+    Unit testing for Vehicles
+=end
+
 require 'test_helper'
 
 class VehicleTest < ActiveSupport::TestCase

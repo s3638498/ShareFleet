@@ -1,0 +1,40 @@
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+    
+    Partial for the list of vehicles in assign vehicle.
+%>
+
+<% if mode == "add" %>
+    <% pathTo = assigntolocation_path(locid: locationid, vecid: vehicle.id) %>
+<% elsif mode == "remove" %>
+    <% pathTo = deletefromlocation_path(locid: locationid, vecid: vehicle.id) %>
+<% end %>
+<%= link_to pathTo, {method: "put", data: { confirm: "Are you sure?" }} do %>
+    <li class="list-group-item">
+        <div class="form-row">
+            <div class="list-group-row col-md-4">
+                <div class="d-flex w-100 justify-content-md-left">
+                    <h7 class="mb-1 text-danger font-weight-bold"><%= vehicle.registration %></h7>
+                </div>
+            </div>
+            <div class="list-group-row col-md-4">
+                <div class="d-flex w-100 justify-content-md-left">
+                    <h7 class="mb-1">Make: <%= vehicle.make %></h7>
+                </div>
+                <div class="d-flex w-100 justify-content-md-left">
+                    <h7 class="mb-1">Year: <%= vehicle.year %></h7>
+                </div>
+            </div>
+            <div class="list-group-row col-md-4">
+                <div class="d-flex w-100 justify-content-md-left">
+                    <h7 class="mb-1">Model: <%= vehicle.model %></h7>
+                </div>
+                <div class="d-flex w-100 justify-content-md-left">
+                    <h7 class="mb-1">Status:&nbsp</h7>
+                    <h7 class="mb-1 text-primary font-weight-bold"><%= vehicle.status %></h7>
+                </div>
+            </div>
+        </div>
+    </li>
+<% end %>

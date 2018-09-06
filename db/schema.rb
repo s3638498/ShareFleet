@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_09_05_045619) do
+=======
+ActiveRecord::Schema.define(version: 2018_09_03_074239) do
+>>>>>>> 03e24448c2bc9f1317cfc5981c03c3cec5ce250a
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +35,16 @@ ActiveRecord::Schema.define(version: 2018_09_05_045619) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "num_park"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +77,8 @@ ActiveRecord::Schema.define(version: 2018_09_05_045619) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_vehicles_on_location_id"
   end
 
 end
