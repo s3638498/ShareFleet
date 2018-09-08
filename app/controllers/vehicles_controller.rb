@@ -54,9 +54,14 @@ class VehiclesController < ApplicationController
 
   # DELETE /vehicles/1
   def destroy
-    @vehicle.destroy
-    flash[:success] = "Deleted vehicle!"
-    redirect_to :controller => 'vehicles', :action => 'index'
+    if @vehicle.status != "Pickedup"
+      @vehicle.destroy
+      flash[:success] = "Deleted vehicle!"
+      redirect_to :controller => 'vehicles', :action => 'index'
+    else
+      flash[:danger] = "Vehicle is currently booked, unable to delete!"
+      render :edit
+    end
   end
 
   private
@@ -71,6 +76,6 @@ class VehiclesController < ApplicationController
     
     def getConstants
       @BODYTYPE = ["Ute", "Sedan", "Hatch", "SUV"]
-      @STATUSES = [ "Available", "Locked", "Unlocked", "Service" ]
+      @STATUSES = [ "Available", "Pickedup", "Service" ]
     end
 end
