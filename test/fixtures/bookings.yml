@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pickup_time: 2018-09-10 20:18:40
+  expected_dropoff_time: 2018-09-10 20:18:40
+  dropoff_time: 2018-09-10 20:18:40
+  payment_received: false
+
+two:
+  pickup_time: 2018-09-10 20:18:40
+  expected_dropoff_time: 2018-09-10 20:18:40
+  dropoff_time: 2018-09-10 20:18:40
+  payment_received: false

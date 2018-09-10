@@ -24,7 +24,7 @@ end
 Administrator.create!(username: "admin", password: "Password!23")
 
 
-Vehicle.create!(
+veca = Vehicle.create!(
   registration: "VIC001", 
   body: "Sedan", 
   make: "Honda",
@@ -35,7 +35,7 @@ Vehicle.create!(
   status: "Available"
   )
   
-Vehicle.create!(
+vecb = Vehicle.create!(
   registration: "VIC002", 
   body: "Hatch", 
   make: "Toyota",
@@ -46,7 +46,7 @@ Vehicle.create!(
   status: "Available"
   )
   
-Vehicle.create!(
+vecc = Vehicle.create!(
   registration: "VIC003", 
   body: "Ute", 
   make: "Ford",
@@ -57,7 +57,7 @@ Vehicle.create!(
   status: "Available"
   )
   
-Vehicle.create!(
+vecd = Vehicle.create!(
   registration: "VIC004", 
   body: "Hatch", 
   make: "Mazda",
@@ -79,15 +79,27 @@ Vehicle.create!(
   status: "Available"
   )
   
+(1..9).each do |n|
+  Vehicle.create!(
+    registration: "VIC0#{n}0", 
+    body: "Hatch", 
+    make: "Hyundai",
+    model: "Getz",
+    odometer: "#{n}943",
+    year: "200#{n}",
+    colour: "Pink",
+    status: "Available"
+    )
+end
   
-Location.create!(
+parka = Location.create!(
   name: "City Bath", 
   num_park: "3",
   latitude: "-37.807364",
   longitude: "144.963362"
   )
   
-Location.create!(
+parkb = Location.create!(
   name: "Orr st", 
   num_park: "2",
   latitude: "-37.806682",
@@ -115,3 +127,36 @@ Location.create!(
   latitude: "-37.810600",
   longitude: "144.964238"
   )
+  
+parka.vehicles << vecd
+parka.vehicles << vecc
+
+parkb.vehicles << veca
+parkb.vehicles << vecb
+
+datetime = DateTime.now
+booking1 = Booking.new(
+  pickup_time: (datetime + 1.hours),
+  expected_dropoff_time: (datetime + 6.hours)
+  )
+booking1.user = Enduser.first
+booking1.vehicle = vecb
+booking1.save
+
+datetime = DateTime.now + 10.days
+booking2 = Booking.new(
+  pickup_time: (datetime + 1.hours),
+  expected_dropoff_time: (datetime + 6.hours)
+  )
+booking2.user = Enduser.last
+booking2.vehicle = veca
+booking2.save
+
+datetime = DateTime.now + 1.weeks
+booking3 = Booking.new(
+  pickup_time: (datetime + 1.hours),
+  expected_dropoff_time: (datetime + 6.hours)
+  )
+booking3.user = Enduser.second
+booking3.vehicle = veca
+booking3.save
