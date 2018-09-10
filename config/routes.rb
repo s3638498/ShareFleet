@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   resources :vehicles
   #Location resources
   resources :locations
+  #Booking resources
+  resources :bookings
+  
 end
