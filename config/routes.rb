@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :messages
   #route to root
   root 'main#home'
 
