@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2018_09_05_193548) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.boolean "admin", default: false
+    t.boolean "locked", default: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

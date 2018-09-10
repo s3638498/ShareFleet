@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:show, :edit, :destroy]
-  before_action :admin_user,     only: [:index, :destroy]
+  before_action :admin_user,     only: [:index, :destroy, :deactivate, :reactivate]
 
   # GET /users
   def signup
@@ -57,9 +57,31 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  #Deactivate account
+  def deactivate
+      @user = User.find(params[:id])
+      if @user.update_attributes(locked:true)
+      redirect_to users_path 
+      else
+      flash[:danger] = "Error deactivate account"  
+      redirect_to(root_url) 
+      end
+  end
+  
+  #Reactivate account
+  def reactivate
+      @user = User.find(params[:id])
+      if @user.update(locked: false)
+      redirect_to users_path 
+      else
+      flash[:danger] = "Error reactivate account"  
+      redirect_to :back
+      end
+  end
+  
   private
     def user_params
-      params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence)
+      params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence,:locked)
     end
   
   
@@ -80,4 +102,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+<<<<<<< HEAD
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url) unless current_user.class.name == "Administrator"
+    end
+      
+=======
+>>>>>>> 03e24448c2bc9f1317cfc5981c03c3cec5ce250a
 end
