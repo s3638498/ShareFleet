@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @messages = Message.new
   end
 
   def edit
@@ -21,13 +22,14 @@ class MessagesController < ApplicationController
       redirect_to :controller => 'messages', :action => "index"
     else
       @messages = Message.all
-      render :index
+      render :action => "index"
     end
   end
 
   def update
     if @message.update(message_params)
-      redirect_to @message, notice: 'Message was successfully updated.'
+      redirect_to @message
+      flash[:success] = "Message updated!"
     else
       render :edit
     end
@@ -35,7 +37,8 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    redirect_to messages_url, notice: 'Message was successfully destroyed.'
+    flash[:success] = "Message Deleted!"
+    redirect_to messages_url
   end
 
   private

@@ -1,8 +1,6 @@
-
 <div class="field">
-  <%= f.label :content %>
-  <br/>
-  <%= f.text_area :content %>
+  <br>
+  <%= f.text_area :content, placeholder: "Enter Message Here", class: "form-control" %>
 </div>
 
 <div class="field">
@@ -11,8 +9,10 @@
 
 <div class="field">
   <% if (current_user.type == "Administrator") %>
-    <%= f.label :enduser_id %>
-    <%= f.select :enduser_id, options_for_select(Enduser.all.map{|s|[s.id]}) %>
+    <p class = "d-inline">
+      Target Enduser:
+    </p>
+    <%= f.select :enduser_id, options_for_select(Enduser.all.map{|s|[s.id]}), {}, class: "form-control-sm col-md-1" %>
   <% else %>
     <%= f.hidden_field :enduser_id, :value=> current_user.id %>
   <% end %>
@@ -23,5 +23,5 @@
 </div>
 
 <div class="actions">
-  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <%= f.submit "Send Message", class: "btn btn-primary float-right" %>
 </div>

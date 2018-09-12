@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class = "container-fluid col-md-8">
 
-<p>
-  <strong>Content:</strong>
-  <%= @message.content %>
-</p>
+  <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+    <h1>Show Message</h1>
+  </div>
 
-<p>
-  <strong>Administrator:</strong>
-  <%= @message.administrator %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Enduser:</strong>
-  <%= @message.enduser %>
-</p>
+  <p>
+    <strong>Content:</strong>
+    <%= @message.content %>
+  </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+  <p>
+    <strong>Administrator:</strong>
+    <%= @message.administrator %>
+  </p>
+
+  <p>
+    <strong>Enduser:</strong>
+    <%= @message.enduser %>
+  </p>
+
+  <%= link_to 'Edit', edit_message_path(@message) %> |
+  <%= link_to 'Back', messages_path %>
+</div>

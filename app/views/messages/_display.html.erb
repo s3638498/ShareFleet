@@ -1,16 +1,16 @@
 <% @messages.each do |m| %>
-
-      <div style="border: 1px solid black; padding: 5px">
-        <p><%= m.content %></p>
-        <h8>by:</h8>
-        <p style="display: inline"><%= m.author %></p>
-        <p style="float: right">
-          <% if current_user.type == "Administrator" %>
-            <%= link_to 'Show', m %>
-            <%= link_to 'Edit', edit_message_path(m) %></td>
+  <% if ((m.enduser_id == current_user.id) && (m.administrator.id == 6)) || current_user.type === "Administrator" %>
+    <div class="border border-dark rounded px-2 py-2">
+      <p><%= m.content %></p>
+      <h8>by:</h8>
+      <p class="d-inline"><%= m.author %></p>
+      <% if current_user.type == "Administrator" %>
+      <p class="float-right">
+          <%= link_to 'Show', m %>
+          <%= link_to 'Edit', edit_message_path(m) %></td>
           <%= link_to 'Destroy', m, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </p>
-
+      </p>
+      <% end %>
     </div>
     <% end %>
 <% end %>

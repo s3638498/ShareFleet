@@ -1,6 +1,13 @@
-<h1>Editing Message</h1>
+<div class = "container-fluid col-md-8">
 
-<%= render 'form', message: @message %>
+  <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+    <h1>Edit Message</h1>
+  </div>
 
-<%= link_to 'Show', @message %> |
-<%= link_to 'Back', messages_path %>
+  <%= form_for @message do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+  <% end %>
+
+  <%= link_to 'Show', @message %> |
+  <%= link_to 'Back', messages_path %>
+</div>
