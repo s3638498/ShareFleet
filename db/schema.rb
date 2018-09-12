@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_193548) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
+    t.string "author"
     t.integer "administrator_id"
     t.integer "enduser_id"
     t.datetime "created_at", null: false

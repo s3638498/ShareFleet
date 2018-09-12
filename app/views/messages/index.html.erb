@@ -3,24 +3,8 @@
   <div class="alert alert-primary" role="alert" style="margin-top:30px;">
     <h1>Messages</h1>
   </div>
-  <% @messages.each do |message| %>
-    <% if ((message.enduser_id == current_user.id) || current_user.type == "Administrator") %>
-      <div style="border: 1px solid black; padding: 5px">
-        <p><%= message.content %></p>
-        <h8>created_at:</h8>
-        <p style="display: inline"><%= message.created_at %></p>
-        <p style="float: right">
-          <% if current_user.type == "Administrator" %>
-            <%= link_to 'Show', message %>
-            <%= link_to 'Edit', edit_message_path(message) %></td>
-          <%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </p>
-      <% end %>
-    </div>
-
+  <%= render partial: "display" %>
+  <%= form_for :message, :url => {:action => 'create'} do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
   <% end %>
-<% end %>
-
-<%= link_to 'New Message', new_message_path, class: "btn btn-primary btn" %>
-
 </div>

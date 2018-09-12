@@ -9,8 +9,6 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = Message.new
-    params[:administrator_id] = 6
   end
 
   def edit
@@ -20,9 +18,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
+      redirect_to :controller => 'messages', :action => "index"
     else
-      render :new
+      @messages = Message.all
+      render :index
     end
   end
 
@@ -43,8 +42,8 @@ class MessagesController < ApplicationController
     def set_message
       @message = Message.find(params[:id])
     end
-    
+
     def message_params
-      params.require(:message).permit(:content, :administrator_id, :enduser_id)
+      params.require(:message).permit(:content, :author, :administrator_id, :enduser_id)
     end
 end

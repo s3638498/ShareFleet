@@ -1,0 +1,16 @@
+<% @messages.each do |m| %>
+
+      <div style="border: 1px solid black; padding: 5px">
+        <p><%= m.content %></p>
+        <h8>by:</h8>
+        <p style="display: inline"><%= m.author %></p>
+        <p style="float: right">
+          <% if current_user.type == "Administrator" %>
+            <%= link_to 'Show', m %>
+            <%= link_to 'Edit', edit_message_path(m) %></td>
+          <%= link_to 'Destroy', m, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+
+    </div>
+    <% end %>
+<% end %>

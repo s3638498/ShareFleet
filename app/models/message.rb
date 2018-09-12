@@ -3,4 +3,5 @@ class Message < ApplicationRecord
   belongs_to :enduser
 
   validates :content, presence: true, allow_blank: false
+  validates :author, presence: true, allow_blank: false
 end
