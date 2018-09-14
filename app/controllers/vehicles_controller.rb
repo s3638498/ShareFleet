@@ -43,6 +43,7 @@ class VehiclesController < ApplicationController
     @booking = Booking.find(params[:id])
     @vehicle = @booking.vehicle
     @vehicle.update(:status => "Available")
+    flash[:success] = "Vehicle has been dropped off!"
     redirect_to :controller => 'users', :action => 'show', :id => @booking.user.id
   end
 
