@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'session#create'
   delete '/login',  to: 'session#destroy'
   get   '/signup',  to: 'users#new'
+  get   '/bookingHistory',  to: 'users#bookingHistory'
   post  '/signup',  to: 'users#create'
   patch "/edit", :to => 'users#update'
   
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   get   '/addvehicle',  to: 'vehicles#new'
   patch "/editvehicle", to: 'vehicles#update'
   patch "/deletevehicle", to: 'vehicles#destroy'
+  put "/setStatusPickup", to: 'vehicles#setStatusPickup'
+  put "/setStatusAvailable", to: 'vehicles#setStatusAvailable'
   
   #Location
   patch "/deletelocation", to: 'locations#destroy'

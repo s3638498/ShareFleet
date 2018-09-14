@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.order('pickup_time')
   end
 
   # GET /bookings/1

@@ -15,7 +15,21 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    now = DateTime.now
     @user = Enduser.find(params[:id])
+    bookings = @user.bookings.order('pickup_time')
+    bookings.each do |book|
+      if now.between?(book.pickup_time, book.expected_dropoff_time)
+        @upcomingBooking = book
+        break
+      end
+    end
+    
+  end
+  
+  def bookingHistory
+    @user = Enduser.find(params[:id])
+    @bookings = @user.bookings.order('pickup_time')
   end
 
   # GET /users/new

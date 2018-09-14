@@ -41,8 +41,4 @@ class LocationTest < ActiveSupport::TestCase
     assert_not @location.valid?
   end
   
-  test "Address should be present" do
-    @location.address = nil
-    assert_not @location.valid?
-  end
 end

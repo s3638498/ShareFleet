@@ -11,8 +11,12 @@ class SessionController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       
-      redirect_back_or root_url
-      #redirect_to :controller => 'users', :action => 'show'
+      
+      if user.is_a? Enduser
+        redirect_to :controller => 'users', :action => 'show', :id => user.id
+      else
+        redirect_back_or root_url
+      end
     else if user && user.authenticate(params[:session][:password]) && user.locked == true
       flash.now[:warning] = "Account has been locked, please contact Share Fleets."
       render 'login'

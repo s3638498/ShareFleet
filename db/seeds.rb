@@ -160,3 +160,32 @@ booking3 = Booking.new(
 booking3.user = Enduser.second
 booking3.vehicle = veca
 booking3.save
+
+#Testing Dashboard
+locateAddress = Location.create!(
+  name: "Canning", 
+  num_park: "3",
+  address: "296 Canning St Carlton North VIC 3054"
+  )
+
+vec = Vehicle.create!(
+  registration: "VICABC", 
+  body: "Hatch", 
+  make: "Hyundai",
+  model: "Getz",
+  odometer: "8943",
+  year: "2008",
+  colour: "Pink",
+  status: "Available"
+  )
+
+locateAddress.vehicles << vec
+
+datetime = DateTime.now
+booking4 = Booking.new(
+  pickup_time: (datetime + 1.seconds),
+  expected_dropoff_time: (datetime + 6.hours)
+  )
+booking4.user = Enduser.first
+booking4.vehicle = vec
+booking4.save

@@ -30,6 +30,21 @@ class VehiclesController < ApplicationController
   def edit
     @vehicle = Vehicle.find(params[:id])
   end
+  
+  # PATCH/PUT /vehicles/1
+  def setStatusPickup
+    @booking = Booking.find(params[:id])
+    @vehicle = @booking.vehicle
+    @vehicle.update(:status => "Pickedup")
+    redirect_to :controller => 'users', :action => 'show', :id => @booking.user.id
+  end
+  
+  def setStatusAvailable
+    @booking = Booking.find(params[:id])
+    @vehicle = @booking.vehicle
+    @vehicle.update(:status => "Available")
+    redirect_to :controller => 'users', :action => 'show', :id => @booking.user.id
+  end
 
   # POST /vehicles
   def create
