@@ -12,8 +12,7 @@ class LocationTest < ActiveSupport::TestCase
     @location = Location.new(
     name: "Test st", 
     num_park: "1",
-    latitude: "-37.809236",
-    longitude: "144.964877"
+    address: "375 Cardigan St Carlton VIC 3053"
     )
   end
   
@@ -42,13 +41,8 @@ class LocationTest < ActiveSupport::TestCase
     assert_not @location.valid?
   end
   
-  test "Location latitude should be present" do
-    @location.latitude = nil
-    assert_not @location.valid?
-  end
-  
-  test "Enduser longitude should be present" do
-    @location.longitude = nil
+  test "Address should be present" do
+    @location.address = nil
     assert_not @location.valid?
   end
 end
