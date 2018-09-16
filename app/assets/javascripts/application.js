@@ -22,9 +22,6 @@
 //= require owl.carousel.min
 //= require superfish.min
 //= require jquery-2.2.4.min
-//= require dataTables/jquery.dataTables
-
-
 
 $(document).ready(function(){
 	"use strict";
@@ -277,8 +274,10 @@ $(document).ready(function(){
 
  		});
 
-	$(document).ready(function() {
-    $('#datatable').DataTable({
-			pagingType: 'full_numbers'
-		});
-  });
+		$(document).on('turbolinks:load', function(){
+		  $("table[role='datatable']").each(function(){
+		    $(this).DataTable({
+
+		    });
+		  });
+		})

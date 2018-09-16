@@ -1,9 +1,12 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+
 <div class="alert alert-primary" role="alert" style="margin-top:30px;">
   <h2>All Customers</h2>
 </h2>
 </div>
 
-<table id="datatable" class="cell-border row-border order-column hover stripe compact">
+<table role="datatable" class="table table-striped table-bordered table-compact table-hover dt-responsive" cellspacing="0" style="width:100%">
   <thead>
     <tr>
       <th>Id</th>
@@ -14,6 +17,7 @@
       <th>Contact Number</th>
       <th>Address</th>
       <th>Driver Licence No.</th>
+      <th>Account</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +31,19 @@
       <td><%= user.contact_number %></td>
       <td><%= user.address %></td>
       <td><%= user.driver_licence %></td>
+      <td>
+        <% if current_user.class.name == "Administrator" && !current_user?(user) && user.locked == false %>
+          <%= form_for(user, url: deactivate_user_path(user)) do |f| %>
+            <%= f.hidden_field :locked, value: true %>
+            <%= f.submit 'Deactivate account', :class => 'btn-sm3 btn-danger' %>
+          <% end %>
+          <% else %>
+          <%= form_for(user, url: reactivate_user_path(user)) do |f| %>
+            <%= f.hidden_field :locked, value: false %>
+            <%= f.submit 'Reactivate account', :class => 'btn-sm2 btn-danger' %>
+          <% end %>
+        <% end %>
+    </td>
     </tr>
     <% end %>
   </tbody>
