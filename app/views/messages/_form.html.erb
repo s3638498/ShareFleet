@@ -12,7 +12,7 @@
     <p class = "d-inline">
       Target Enduser:
     </p>
-    <%= f.select :enduser_id, options_for_select(Enduser.all.map{|s|[s.id]}), {}, class: "form-control-sm col-md-1" %>
+    <%= f.select :enduser_id, options_for_select(Enduser.all.map{|s|[s.id]}), {}, id: "select", onchange: "val();",  class: "form-control-sm col-md-1" %>
   <% else %>
     <%= f.hidden_field :enduser_id, :value=> current_user.id %>
   <% end %>

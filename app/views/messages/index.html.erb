@@ -3,6 +3,7 @@
   <div class="alert alert-primary" role="alert" style="margin-top:30px;">
     <h1>Messages</h1>
   </div>
+  
   <%= render partial: "display" %>
   <%= form_for :message, :url => {:action => 'create'} do |f| %>
     <%= render partial: "form", locals: {f: f} %>

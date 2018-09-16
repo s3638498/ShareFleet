@@ -1,10 +1,10 @@
 <% @messages.each do |m| %>
-  <% if ((m.enduser_id == current_user.id) && (m.administrator.id == 6)) || current_user.type === "Administrator" %>
+  <% if ((m.enduser_id == current_user.id) && (m.administrator.id == 6)) || current_user.type == "Administrator" %>
     <div class="border border-dark rounded px-2 py-2">
       <p><%= m.content %></p>
       <h8>by:</h8>
-      <p class="d-inline"><%= m.author %></p>
-      <% if current_user.type == "Administrator" %>
+      <p class="d-inline"><%= link_to m.author, users_path %>
+      <% if m.author == current_user.username %>
       <p class="float-right">
           <%= link_to 'Show', m %>
           <%= link_to 'Edit', edit_message_path(m) %></td>

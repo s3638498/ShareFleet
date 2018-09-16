@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def signup
     @users = Enduser.all
   end
-  
+
   # GET /users
   def index
     @users = Enduser.all
@@ -61,30 +61,30 @@ class UsersController < ApplicationController
   def deactivate
       @user = User.find(params[:id])
       if @user.update_attributes(locked:true)
-      redirect_to users_path 
+      redirect_to users_path
       else
-      flash[:danger] = "Error deactivate account"  
-      redirect_to(root_url) 
+      flash[:danger] = "Error deactivate account"
+      redirect_to(root_url)
       end
   end
-  
+
   #Reactivate account
   def reactivate
       @user = User.find(params[:id])
       if @user.update(locked: false)
-      redirect_to users_path 
+      redirect_to users_path
       else
-      flash[:danger] = "Error reactivate account"  
+      flash[:danger] = "Error reactivate account"
       redirect_to :back
       end
   end
-  
+
   private
     def user_params
       params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence,:locked)
     end
-  
-  
+
+
     # Before filters
     # Confirms a logged-in user.
     def logged_in_user
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
         @user = User.find(current_user.id)
       end
     end
-    
+
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
