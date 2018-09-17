@@ -64,15 +64,13 @@ module SessionHelper
     current_user.class.name == "Administrator" ? true : false
   end
   
-<<<<<<< HEAD
   #check if correct user
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
-=======
   # Confirms an admin user.
   def admin_user
     redirect_to(root_url) unless current_user.class.name == "Administrator"
->>>>>>> 03e24448c2bc9f1317cfc5981c03c3cec5ce250a
   end
+end
 end

@@ -16,6 +16,7 @@
 	          		<li><%= link_to "Add Parking location", controller: "locations", action: "new" %></li>
 	          	<% else %>
 	          		<li><%= link_to "Account", edit_user_path(current_user) %></li>
+	          		<li><%= link_to "Refer a friend", new_invitation_path %></li>
 	          	<% end %>
 	          	<li><%= link_to "Logout", login_path, method: :delete%></li>
 	          <% else %>
