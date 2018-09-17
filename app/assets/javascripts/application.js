@@ -15,12 +15,11 @@
 //= require turbolinks
 
 //= require main
-
+//= require jquery-2.2.4.min
 //= require jquery.magnific-popup.min
 //= require jquery.nice-select.min
 //= require owl.carousel.min
 //= require superfish.min
-//= require jquery-2.2.4.min
 //= require bootstrap.min
 //= require bootstrap-sprockets
 //= require_tree .
