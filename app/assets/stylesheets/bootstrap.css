@@ -2784,6 +2784,12 @@ input[type="button"].btn-block {
   display: none;
 }
 
+.collapse.in{
+    display:block !important;
+    float: left;
+    width: 100%;
+}
+
 .collapse.show {
   display: block;
 }
