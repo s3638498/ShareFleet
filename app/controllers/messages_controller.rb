@@ -3,34 +3,37 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
+
   end
 
   def show
-  end
 
-  def new
-    @messages = Message.new
   end
 
   def edit
+
   end
 
   def create
     @message = Message.new(message_params)
 
     if @message.save
+      flash[:success] = "Message saved!"
       redirect_to :controller => 'messages', :action => "index"
     else
+      flash[:success] = message_params
       @messages = Message.all
       render :action => "index"
     end
   end
 
   def update
+
     if @message.update(message_params)
-      redirect_to @message
       flash[:success] = "Message updated!"
+      redirect_to :controller => 'messages', :action => "index"
     else
+      flash[:success] = "Message failed!"
       render :edit
     end
   end
@@ -38,7 +41,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     flash[:success] = "Message Deleted!"
-    redirect_to messages_url
+    redirect_to user_messages_url
   end
 
   private

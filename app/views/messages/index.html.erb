@@ -1,11 +1,27 @@
+<%#
+    Author: Tony Mao
+    Student number: s3602027
+%>
+
 <p id="notice"><%= notice %></p>
 <div class="container-fluid col-md-8">
   <div class="alert alert-primary" role="alert" style="margin-top:30px;">
     <h1>Messages</h1>
   </div>
-  
+
   <%= render partial: "display" %>
   <%= form_for :message, :url => {:action => 'create'} do |f| %>
     <%= render partial: "form", locals: {f: f} %>
   <% end %>
 </div>
+
+<%#
+  bugs/issues ->
+    Turbolinks issue when loading user datatable (needs refresh sometimes)
+    Form error message does not display
+    When editing, admin can possibly change receipient by clicking on wrong user (error prone)
+    Message test cases not complete
+    Not explicit admin is able to click on user in datatable for messaging
+    No default display when user has no messages in inbox
+
+%>

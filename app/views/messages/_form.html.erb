@@ -9,10 +9,7 @@
 
 <div class="field">
   <% if (current_user.type == "Administrator") %>
-    <p class = "d-inline">
-      Target Enduser:
-    </p>
-    <%= f.select :enduser_id, options_for_select(Enduser.all.map{|s|[s.id]}), {}, id: "select", onchange: "val();",  class: "form-control-sm col-md-1" %>
+    <%= f.hidden_field :enduser_id, :value=> params[:user_id]%>
   <% else %>
     <%= f.hidden_field :enduser_id, :value=> current_user.id %>
   <% end %>

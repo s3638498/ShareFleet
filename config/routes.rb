@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :messages
   #route to root
   root 'main#home'
 
-  
+
   #User add, edit and login
   get    '/login',   to: 'session#new'
   post   '/login',   to: 'session#create'
@@ -12,12 +11,12 @@ Rails.application.routes.draw do
   get   '/signup',  to: 'users#new'
   post  '/signup',  to: 'users#create'
   patch "/edit", :to => 'users#update'
-  
+
   #Vehicle
   get   '/addvehicle',  to: 'vehicles#new'
   patch "/editvehicle", to: 'vehicles#update'
   patch "/deletevehicle", to: 'vehicles#destroy'
-  
+
   #Location
   patch "/deletelocation", to: 'locations#destroy'
   put "/assigntolocation", to: 'locations#assignvehicletolocation'
@@ -27,11 +26,13 @@ Rails.application.routes.draw do
       get 'assignvehicle'
     end
   end
-  
+
   #Users resource
   resources :users do
     member {patch :reactivate}
     member {patch :deactivate}
+    #messages under users for RESTful approach
+    resources :messages
   end
   #Vehicle resource
   resources :vehicles
