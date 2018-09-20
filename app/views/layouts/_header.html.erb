@@ -19,6 +19,7 @@
  				    <% else %>
 	 				<li><%= link_to "Dashboard", controller: "users", action: "show", id: current_user %></li>
 	 				<li><%= link_to "Booking History", controller: "users", action: "bookingHistory", id: current_user %></li>
+	 				<li class="nav-item navi-link"><%= link_to "Refer a friend", new_invitation_path %></li>
 	 				<li><%= link_to "Personal information", edit_user_path(current_user) %></li>
  				    <% end %>
  			       	       <li><%= link_to "Logout", login_path, method: :delete%></li>
@@ -59,7 +60,9 @@
  	     <% else %>
 	 	<li class="nav-item navi-link"><%= link_to "Dashboard", controller: "users", action: "show", id: current_user %></li>
 	 	<li class="nav-item navi-link"><%= link_to "Booking History", controller: "users", action: "bookingHistory", id: current_user %></li>
+	 	<li class="nav-item navi-link"><%= link_to "Refer a friend", new_invitation_path %></li>
 	 	<li class="nav-item navi-link"><%= link_to "Personal information", edit_user_path(current_user) %></li>
+	 	
  	     <% end %>
  	        <li class="nav-item navi-link"><%= link_to "Logout", login_path, method: :delete%></li>
  	     <% else %>

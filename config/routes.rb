@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+
+  get 'password_resets/new'
+  get 'password_resets/edit'
+  get 'invitations/new'
   #route to root
   root 'main#home'
 
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
   patch "/deletelocation", to: 'locations#destroy'
   put "/assigntolocation", to: 'locations#assignvehicletolocation'
   put "/deletefromlocation", to: 'locations#removevehiclefromlocation'
+ 
+ 
   resources :locations do
     member do
       get 'assignvehicle'
@@ -42,4 +48,8 @@ Rails.application.routes.draw do
   #Booking resources
   resources :bookings
   
+  #Reset Password
+  resources :password_resets,     only: [:new, :create, :edit, :update]
+  #invitation
+  resources :invitations,     only: [:new, :create, :edit, :update]
 end
