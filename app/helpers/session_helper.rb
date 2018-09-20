@@ -9,12 +9,12 @@ module SessionHelper
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
   end
-  
+
   # Returns true if the given user is the current user.
   def current_user?(user)
     user == current_user
   end
-  
+
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if (user_id = session[:user_id])
@@ -32,7 +32,7 @@ module SessionHelper
   def logged_in?
     !current_user.nil?
   end
-  
+
   # Forgets a persistent session.
   def forget(user)
     user.forget
@@ -47,7 +47,7 @@ module SessionHelper
     session.delete(:forwarding_url)
     @current_user = nil
   end
-  
+
   # Redirects to stored location (or to the default).
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
@@ -58,24 +58,24 @@ module SessionHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
-  
+
   #check if admin
   def administrator?
     current_user.class.name == "Administrator" ? true : false
   end
-  
+
   #check if correct user
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
-  
+
 
   # Confirms an admin user.
   def admin_user
     redirect_to(root_url) unless current_user.class.name == "Administrator"
   end
-  
+
   # Confirms a logged-in user.
   def logged_in_user
     unless logged_in?
