@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-    
+   
     def new
     end
     
@@ -9,6 +9,8 @@ end
 def create
     
  @invitation = Invitation.new(invite_params)
+ @code = Discount.new.generate_discount_code
+
     if @invitation.save
       UserMailer.sign_up(@invitation).deliver
       flash[:info] = "Invite sent!"
