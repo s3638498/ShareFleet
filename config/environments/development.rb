@@ -63,8 +63,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'password-confirm-jeremy321.c9users.io' }
  config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  :user_name => 'caf0db35666106',
-  :password => 'ca904bb028d954',
+  :user_name => '4446185550b97a',
+  :password => 'e44e86125b7ec9',
   :address => 'smtp.mailtrap.io',
   :domain => 'smtp.mailtrap.io',
   :port => '2525',
