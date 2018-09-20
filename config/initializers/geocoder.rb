@@ -1,1 +1,1 @@
-#Geocoder.configure(lookup: :google, api_key: "AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0")
+Geocoder.configure(lookup: :google, api_key: "AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0")
