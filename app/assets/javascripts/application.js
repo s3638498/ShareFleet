@@ -55,7 +55,7 @@ $('.single-gallery').magnificPopup({
   }
 });
 
-    //  Counter Js 
+    //  Counter Js
     if(document.getElementById("facts-area")){
       $('.counter').counterUp({
         delay: 10,
@@ -116,7 +116,7 @@ $(document).ready(function() {
     margin:30,
     autoplay:true,
     loop:true,
-    dots: true,       
+    dots: true,
     responsive: {
       0: {
         items: 1
@@ -157,15 +157,15 @@ function initMap() {
   //3008 Docklands
   var dockxbourke = {lat: -37.819007, lng: 144.946385};
   var dockxlatrobe = {lat: -37.814998, lng: 144.945537};
-  
+
   //3053 Carlton
   var carlxlygon = {lat: -37.798246, lng: 144.967267};
   var carlxgrattan = {lat: -37.800836, lng: 144.967508};
 
-  //map, Melbourne Central 
+  //map, Melbourne Central
   var map = new google.maps.Map(
     document.getElementById('googleMaps'), {
-      zoom: 17, 
+      zoom: 17,
       center: cityxeli
     });
 
@@ -192,7 +192,7 @@ function initMap() {
   var defaultBounds = new google.maps.LatLngBounds(
    new google.maps.LatLng(-90, -180),
    new google.maps.LatLng(90, 180));
-  
+
   var input = document.getElementById('pac-input');
   var options = {
     bounds: defaultBounds,
@@ -258,3 +258,19 @@ infowindow.open(map, marker);
 });
 
 }
+
+
+
+$(document).on('turbolinks:load', function(){
+$("table[role='datatable']").each(function(){
+$(this).DataTable({
+
+});
+});
+})
+
+$(document).on('turbolinks:load', function(){
+$("tr[data-link]").click(function() {
+window.location = $(this).data("link")
+});
+})

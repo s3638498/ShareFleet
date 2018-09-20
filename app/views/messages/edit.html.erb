@@ -1,0 +1,13 @@
+<div class = "container-fluid col-md-8">
+
+  <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+    <h1>Edit Message</h1>
+  </div>
+
+  <%= form_for [:users, @message], :url => {:action => 'update'} do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+  <% end %>
+
+  <%= link_to 'Show', user_message_path(params[:user_id], @message) %> |
+  <%= link_to 'Back', user_messages_path %>
+</div>
