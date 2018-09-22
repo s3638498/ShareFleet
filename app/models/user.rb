@@ -1,7 +1,6 @@
 class User < ApplicationRecord
     has_many :bookings
     attr_accessor :reset_token
-    validates :password, presence: true
     def User.new_token
         SecureRandom.urlsafe_base64
     end

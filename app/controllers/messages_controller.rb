@@ -18,10 +18,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      flash[:success] = "Message saved!"
+      flash[:success] = "Message sent!"
       redirect_to :controller => 'messages', :action => "index"
     else
-      flash[:success] = message_params
+      flash.now[:warning] = "Message cannot be blank!"
       @messages = Message.all
       render :action => "index"
     end

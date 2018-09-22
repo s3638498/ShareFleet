@@ -1,17 +1,10 @@
 <% @messages.each do |m| %>
   <% if (current_user.type == "Administrator" && m.enduser == Enduser.find_by_id(params[:user_id])) ||
-      m.enduser_id == current_user.id %>
-    <div class="border border-dark rounded px-2 py-2">
+    m.enduser_id == current_user.id %>
+    <div class="border border-dark px-2 py-2">
       <p><%= m.content %></p>
       <h8>by:</h8>
-      <p class="d-inline"><%= link_to m.author, users_path %>
-      <% if m.author == current_user.username %>
-      <p class="float-right">
-          <%= link_to 'Show', user_message_path(params[:user_id], m) %>
-          <%= link_to 'Edit', edit_user_message_path(params[:user_id], m) %>
-          <%= link_to 'Destroy', user_message_path(params[:user_id], m), method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
-      <% end %>
+      <p class="d-inline"><%= m.author %>
     </div>
     <% end %>
 <% end %>

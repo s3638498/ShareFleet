@@ -6,9 +6,9 @@
 <p id="notice"><%= notice %></p>
 <div class="container-fluid col-md-8">
   <div class="alert alert-primary" role="alert" style="margin-top:30px;">
-    <h1>Messages</h1>
+    <h2>Messages</h2>
   </div>
-
+  
   <%= render partial: "display" %>
   <%= form_for :message, :url => {:action => 'create'} do |f| %>
     <%= render partial: "form", locals: {f: f} %>

@@ -1,33 +1,30 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 
 <div class="alert alert-primary" role="alert" style="margin-top:30px;">
   <h2>All Customers</h2>
 </h2>
 </div>
 
-<table role="datatable" class="table table-bordered table-compact table-hover dt-responsive" cellspacing="0" style="width:100%">
+<table role="datatable" class="table table-bordered table-compact dt-responsive" cellspacing="0" style="width:100%">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th>Username</th>
+      <th>Name</th>
       <th>D.O.B</th>
       <th>Email</th>
       <th>Contact Number</th>
       <th>Address</th>
       <th>Driver Licence No.</th>
       <th>Account</th>
+      <th>Message</th>
     </tr>
   </thead>
   <tbody>
   <% @users.each do |user| %>
-    <tr data-link= "<%= user_messages_path(user.id) %>">
-      <td><%= user.id %></td>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.date_of_birth %></td>
+      <td><%= user.username %></td>
+      <td><%= user.first_name %> <%= user.last_name %></td>
+      <td><%= user.date_of_birth.in_time_zone("Melbourne").strftime("%d/%m/%Y") %></td>
       <td><%= user.email %></td>
       <td><%= user.contact_number %></td>
       <td><%= user.address %></td>
@@ -36,15 +33,18 @@
         <% if current_user.class.name == "Administrator" && !current_user?(user) && user.locked == false %>
           <%= form_for(user, url: deactivate_user_path(user)) do |f| %>
             <%= f.hidden_field :locked, value: true %>
-            <%= f.submit 'Deactivate account', :class => 'btn-sm3 btn-danger' %>
+            <%= f.submit 'Deactivate account', :class => 'btn btn-danger' %>
           <% end %>
           <% else %>
           <%= form_for(user, url: reactivate_user_path(user)) do |f| %>
             <%= f.hidden_field :locked, value: false %>
-            <%= f.submit 'Reactivate account', :class => 'btn-sm2 btn-danger' %>
+            <%= f.submit 'Reactivate account', :class => 'btn btn-warning' %>
           <% end %>
         <% end %>
-    </td>
+      </td>
+      <td>
+        <%= link_to("Message", user_messages_path(user.id), :class => "btn btn-info") %>
+      </td>
     </tr>
     <% end %>
   </tbody>

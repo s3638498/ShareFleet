@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   #Deactivate account
   def deactivate
-      @user = User.find(params[:id])
+      @user = Enduser.find(params[:id])
       if @user.update_attributes(locked:true)
       redirect_to users_path
       else
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
 
   #Reactivate account
   def reactivate
-      @user = User.find(params[:id])
+      @user = Enduser.find(params[:id])
       if @user.update(locked: false)
       redirect_to users_path
       else
