@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-
+    @message.administrator_id = Administrator.first.id
     if @message.save
       flash[:success] = "Message sent!"
       redirect_to :controller => 'messages', :action => "index"

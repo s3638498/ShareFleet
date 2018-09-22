@@ -4,10 +4,6 @@
 </div>
 
 <div class="field">
-  <%= f.hidden_field :administrator_id, :value => Administrator.first.id %>
-</div>
-
-<div class="field">
   <% if (current_user.type == "Administrator") %>
     <%= f.hidden_field :enduser_id, :value=> params[:user_id]%>
   <% else %>
