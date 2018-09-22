@@ -5,7 +5,7 @@ require_relative 'application'
 Rails.application.initialize!
 
 #Change the host to where the link will forward the user to when they click the link
-ActionMailer::Base.default_url_options = { :host => 'password-confirm-jeremy321.c9users.io' }
+ActionMailer::Base.default_url_options = { :host => 'sharefleets-development-s3201690.c9users.io' }
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {

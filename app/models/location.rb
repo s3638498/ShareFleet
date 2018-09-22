@@ -33,7 +33,7 @@ class Location < ApplicationRecord
   
   validates :name, presence: true, uniqueness: true
   validates :num_park, presence: true, numericality: { greater_than: 0 }
-  #validates :address, presence: true
+  validates :address, presence: true
   #validates :latitude, presence: true
   #validates :longitude, presence: true
 end
