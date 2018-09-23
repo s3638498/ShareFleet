@@ -169,6 +169,7 @@ function initMap() {
       center: cityxeli
     });
 
+
   // The red marker, positioned for City 3000
   var marker = new google.maps.Marker({position: cityxmc, map: map, icon: carMarker});
   var marker = new google.maps.Marker({position: cityxeli, map: map, icon: carMarker});
@@ -256,5 +257,41 @@ infowindowContent.children['place-address'].textContent = address;
 infowindow.open(map, marker);
 
 });
+
+//Paypal integration
+    // Configure environment
+   paypal.Button.render({
+    env: 'sandbox',
+    client: {
+      sandbox: 'Ad5qmwmHtRJtHjg8KNIME-hgnOFmTRMgQ9gwgKvRwJhhJj21MoMybjHDLxqkiArv1BwY8nvqEU5FC0A_',
+      production: 'demo_production_client_id'
+    },
+    // Customize button (optional)
+    locale: 'en_AU',
+    style: {
+      size: 'large',
+      color: 'gold',
+      shape: 'rect',
+    },
+
+    // This part can be done using paypal SDK for rails
+    payment: function(data, actions) {
+      return actions.payment.create({
+        transactions: [{
+          amount: {
+            total: '10.00', //read from the value user select
+            currency: 'AUD'
+          }
+        }]
+      });
+    },
+    // Execute the payment
+    onAuthorize: function(data, actions) {
+      return actions.payment.execute().then(function() {
+        // Show a confirmation message to the buyer
+        window.alert('Thank you for your purchase!');
+      });
+    }
+  }, '#paypal-button');
 
 }

@@ -1,0 +1,48 @@
+<div class="p-3 mb-2 bg-primary text-white vehicleHeader">Review Booking Details</div>
+ <div class="row">
+  <div class="col-sm-6 vehicleDetails">
+    <div class="p-3 mb-2 bg-dark text-white text-center">Vehicle Details</div>
+    <div class="vecImage">
+        <%= link_to image_tag("nissanSuv", alt: "logo", width: "550px", height:"400px" ), root_path %>  <!--make to dynamic-->
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col" >Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Body</th>
+      <td>Insert</td>
+    </tr>
+    <tr>
+      <th scope="row">Make</th>
+      <td>Insert</td>
+    </tr>
+    <tr>
+      <th scope="row">Model</th>
+      <td>Insert</td>
+    </tr>
+    <tr>
+      <th scope="row">Odometer</th>
+      <td>Insert</td>
+    </tr>
+    <tr>
+      <th scope="total">Total</th>
+      <td>$$$</td>
+    </tr>
+  </tbody>
+</table>
+ <div id="paypal-button"></div>
+  </div>
+  <div class="col-sm-6 vehicleMaps">
+    <div class="p-3 mb-2 bg-dark text-white text-center">Vehicle Location</div>
+	<div id="googleMaps"> <!--make to dynamic-->
+	</div>
+  </div>
+</div> 
+
+<script 
+async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0&libraries=places&callback=initMap">
+</script>

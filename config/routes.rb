@@ -29,6 +29,10 @@ Rails.application.routes.draw do
       get 'assignvehicle'
     end
   end
+
+  # Booking
+  get   '/booking',  to: 'bookings#new'
+
   
   #Users resource
   resources :users do
