@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   resources :users do
     member {patch :reactivate}
     member {patch :deactivate}
-    #messages under users for RESTful approach
-    resources :messages
   end
+  #Message resource
+  resources :messages
   #Vehicle resource
   resources :vehicles
   #Location resources

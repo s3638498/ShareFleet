@@ -43,7 +43,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to("Message", user_messages_path(user.id), :class => "btn btn-info") %>
+        <%= link_to("Message", messages_path(:enduser => user.id), :class => "btn btn-info") %>
       </td>
     </tr>
     <% end %>

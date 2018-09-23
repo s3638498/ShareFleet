@@ -1,18 +1,34 @@
-<%#
-    Author: Tony Mao
-    Student number: s3602027
-%>
-
 <p id="notice"><%= notice %></p>
-<div class="container-fluid col-md-8">
+<div class="container-fluid col-md-12">
   <div class="alert alert-primary" role="alert" style="margin-top:30px;">
-    <h2>Messages</h2>
+    <h2> <%= @title %></h2>
   </div>
-  
-  <%= render partial: "display" %>
-  <%= form_for :message, :url => {:action => 'create'} do |f| %>
-    <%= render partial: "form", locals: {f: f} %>
-  <% end %>
+  <div class="list-group">
+    <%= form_for :message, :url =>{:controller =>"messages", :action => "create"}  do |f| %>
+      <%= f.text_area :content, placeholder: "Enter Message Here", class: "form-control" %>
+      <%= f.hidden_field :enduser_id, :value => @enduser.id%>
+      <%= f.submit "Send Message", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+  <div class="list-group">
+    <% if !@messages.empty? %>
+      <% @messages.each do |msg| %>
+        <li class="list-group-item">
+          <div class="form-row">
+            <div class="list-group-row col-md-2">
+              <h7 class="mb-1 text-danger font-weight-bold"><%= msg.author %></h7>
+            </div>
+            <div class="list-group-row col-md-2">
+              <h7 class="mb-1 "> sent at <%= msg.created_at.in_time_zone("Melbourne").strftime("%I:%M%p %d/%m/%Y") %></h7>
+            </div>
+            <div class="list-group-row col-md-8">
+              <%= msg.content %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <%#

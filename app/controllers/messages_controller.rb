@@ -1,55 +1,33 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   def index
-    @messages = Message.all
-
-  end
-
-  def show
-
-  end
-
-  def edit
-
+    if administrator? 
+      @enduser = Enduser.find(params[:enduser])
+      @title = "Messages from " << @enduser.username
+    else
+      @enduser = current_user
+      @title = "Messages from Administrator"
+    end
+    @admin = Administrator.first
+    @messages = Message.where(administrator_id: @admin, enduser_id: @enduser).order("created_at DESC")
   end
 
   def create
     @message = Message.new(message_params)
     @message.administrator_id = Administrator.first.id
+    @message.author = current_user.username
     if @message.save
       flash[:success] = "Message sent!"
-      redirect_to :controller => 'messages', :action => "index"
+      redirect_to :controller => 'messages', :action => "index", :enduser => params[:message][:enduser_id]
     else
-      flash.now[:warning] = "Message cannot be blank!"
+      flash[:warning] = "Message cannot be blank!"
       @messages = Message.all
-      render :action => "index"
+      redirect_to :controller => 'messages', :action => "index", :enduser => params[:message][:enduser_id]
     end
   end
-
-  def update
-
-    if @message.update(message_params)
-      flash[:success] = "Message updated!"
-      redirect_to :controller => 'messages', :action => "index"
-    else
-      flash[:success] = "Message failed!"
-      render :edit
-    end
-  end
-
-  def destroy
-    @message.destroy
-    flash[:success] = "Message Deleted!"
-    redirect_to user_messages_url
-  end
-
+  
   private
-    def set_message
-      @message = Message.find(params[:id])
-    end
-
     def message_params
-      params.require(:message).permit(:content, :author, :administrator_id, :enduser_id)
+      params.require(:message).permit(:content, :enduser_id)
     end
 end
