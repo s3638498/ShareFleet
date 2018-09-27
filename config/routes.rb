@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
   #Reset Password
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  #invitation
-  resources :invitations,     only: [:new, :create, :edit, :update]
+  #Invite user
+  get   '/invite',  to: 'invitations#new'
+  resources :invitations
 end

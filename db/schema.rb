@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_23_120436) do
+ActiveRecord::Schema.define(version: 2018_09_27_174436) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,19 +47,6 @@ ActiveRecord::Schema.define(version: 2018_09_23_120436) do
     t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
   end
 
-  create_table "discounts", force: :cascade do |t|
-    t.string "discountcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "invitations", force: :cascade do |t|
-    t.integer "sender_id"
-    t.string "recipient_email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -79,6 +66,13 @@ ActiveRecord::Schema.define(version: 2018_09_23_120436) do
     t.datetime "updated_at", null: false
     t.index ["administrator_id"], name: "index_messages_on_administrator_id"
     t.index ["enduser_id"], name: "index_messages_on_enduser_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string "code"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

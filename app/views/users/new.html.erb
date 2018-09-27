@@ -49,7 +49,11 @@
                 <%= f.password_field :password_confirmation, placeholder: "Password", class: "form-control" %>
             </div>  
         </div>
-
+        
+        <% if !@referer.blank? %>
+            <%= hidden_field_tag 'referer', @referer, class: "form-control" %>
+        <% end %>
+        
         <%= f.submit "Create my account", class: "btn btn-primary btn-block" %>
     <% end %>
 </div>

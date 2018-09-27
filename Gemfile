@@ -25,6 +25,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 #Location Geocoder
 gem 'geocoder'
+#coupon code generation
+gem 'coupon_code'
 
 #Timeliness Gem for date time validation in Booking
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
