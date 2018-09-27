@@ -48,9 +48,23 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = Enduser.new(user_params)
-
     if @user.save
-      if !params[:referer].blank? && !Enduser.where(email: params[:referer]).nil?
+      if !params[:referer].blank? && !(referer = Enduser.where(email: params[:referer]).first).nil?
+        
+        #Generate codes for referer and referee
+        refererCode = CouponCode.generate(parts: 2)
+        Promotion.create!(
+          code: refererCode, 
+          amount: "0.10")
+          
+        refereeCode = CouponCode.generate(parts: 2)
+        Promotion.create!(
+          code: refereeCode, 
+          amount: "0.10")
+          
+        #Send code to users
+        UserMailer.send_promo_code(referer.email,refererCode).deliver
+        UserMailer.send_promo_code(@user.email,refereeCode).deliver
         flash[:success] = "Successfully created account, promotional code sent!"
       else
         flash[:success] = "Successfully created account!"
