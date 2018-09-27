@@ -25,6 +25,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 #Location Geocoder
 gem 'geocoder'
+# REST API Paypal
+gem 'paypal-sdk-rest'
+gem 'gon'
+gem 'rabl-rails'
 
 #Timeliness Gem for date time validation in Booking
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
