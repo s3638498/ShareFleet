@@ -35,6 +35,9 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = Enduser.new
+    if !params[:referer].blank?
+      @referer = params[:referer]
+    end
   end
 
   # GET /users/1/edit
@@ -47,7 +50,11 @@ class UsersController < ApplicationController
     @user = Enduser.new(user_params)
 
     if @user.save
-      flash[:success] = "Successfully created account!"
+      if !params[:referer].blank? && !Enduser.where(email: params[:referer]).nil?
+        flash[:success] = "Successfully created account, promotional code sent!"
+      else
+        flash[:success] = "Successfully created account!"
+      end
       log_in @user
       redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
