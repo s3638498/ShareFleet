@@ -1,24 +1,17 @@
 class InvitationsController < ApplicationController
    
     def new
+        @refer = current_user.email
+        
     end
     
     def edit
 end
 
 def create
-    
- @invitation = Invitation.new(invite_params)
- @code = Discount.new.generate_discount_code
-
-    if @invitation.save
-      UserMailer.sign_up(@invitation).deliver
+      UserMailer.sign_up(invite_params).deliver
       flash[:info] = "Invite sent!"
-      redirect_to root_url
-    else
-      flash.now[:danger] = "Please input a valid email address"
       render 'new'
-    end
    
    
 end
@@ -33,5 +26,6 @@ end
  private
 
   def invite_params
-    params.require(:invitation).permit(:recipient_email)
+    params.require(:invitation).permit(:recipient_email,:sender_email)
   end
+

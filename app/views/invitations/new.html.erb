@@ -6,8 +6,9 @@
     <%= form_for(:invitation, url: invitations_path) do |f| %>
       <%= f.label :recipient_email %>
       <%= f.email_field :recipient_email, class: 'form-control' %>
-
+      <%= f.hidden_field :sender_email, :value => @refer %>
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
