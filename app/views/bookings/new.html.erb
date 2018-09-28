@@ -9,7 +9,7 @@
         </div> 
         <div class="form-row justify-content-center">
           <span class= "center-block">
-            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@vehicle.location.latitude}%2C#{@vehicle.location.longitude}&key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0", class: "mx-auto d-block" %>
+            <%= image_tag "https://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@vehicle.location.latitude}%2C#{@vehicle.location.longitude}&key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0", class: "mx-auto d-block" %>
           </span>
         </div>
         <div class="form-row justify-content-center">
@@ -58,7 +58,7 @@
           <h5 class= "text-center"><%= label_tag "Select booking time" %></h5>
         </div>
         <div class="form-row justify-content-center">
-          
+          <div id="calendar"></div>
         </div>
         <div class="form-group col-md-6">
             <%= label_tag "Promotional code:" %>

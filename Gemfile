@@ -27,9 +27,12 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'geocoder'
 #coupon code generation
 gem 'coupon_code'
-
 #Timeliness Gem for date time validation in Booking
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
+
+#Full-calender
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

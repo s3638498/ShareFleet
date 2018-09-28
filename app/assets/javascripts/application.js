@@ -22,7 +22,11 @@
 //= require superfish.min
 //= require bootstrap.min
 //= require bootstrap-sprockets
+//= require moment 
+//= require fullcalendar
 //= require_tree .
+
+
 
 $(document).ready(function(){
 	"use strict";
@@ -274,3 +278,7 @@ $("tr[data-link]").click(function() {
 window.location = $(this).data("link")
 });
 })
+
+$(document).on('turbolinks:load', function(){
+$('#calendar').fullCalendar({});
+});
