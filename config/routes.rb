@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   patch "/deletelocation", to: 'locations#destroy'
   put "/assigntolocation", to: 'locations#assignvehicletolocation'
   put "/deletefromlocation", to: 'locations#removevehiclefromlocation'
+  
+  # Booking
+  get   '/booking',  to: 'bookings#new'
 
 
   resources :locations do

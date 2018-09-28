@@ -16,6 +16,11 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    
+    #Testing
+    @vehicle = Vehicle.last
+    @user = current_user
+    
   end
 
   # GET /bookings/1/edit
@@ -56,6 +61,6 @@ class BookingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def booking_params
-      params.require(:booking).permit(:pickup_time,:expected_dropoff_time,:payment_received)
+      params.require(:booking).permit(:pickup_time,:expected_dropoff_time,:total)
     end
 end

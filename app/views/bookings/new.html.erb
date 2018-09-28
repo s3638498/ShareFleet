@@ -1,0 +1,69 @@
+<div class="container-fluid col-md-8">
+    <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		  <h2>Booking a review</h2>
+	  </div>
+    <%= form_for(@booking) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-row justify-content-center">
+          <h5 class= "text-center"><%= label_tag "Vehicle location" %></h5>
+        </div> 
+        <div class="form-row justify-content-center">
+          <span class= "center-block">
+            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@vehicle.location.latitude}%2C#{@vehicle.location.longitude}&key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0", class: "mx-auto d-block" %>
+          </span>
+        </div>
+        <div class="form-row justify-content-center">
+          <p class="text-danger text-center"><%= label_tag @vehicle.location.address %></p>
+        </div>
+        <div class="form-row justify-content-center">
+          <h5 class= "text-center"><%= label_tag "Selected Vehicle" %></h5>
+        </div>
+        <div class="form-row justify-content-center">
+          <% if @vehicle.image.attached? %>
+            <div class="form-group col-md-4">
+               <%= image_tag @vehicle.image, class: "mx-auto d-block", style: 'height:100%;width:100%;' %>
+            </div>
+          <% else %>
+            <%# IF THERE IS NO IMAGE ATTACHED TO VEHICLE %>
+          <% end %>
+          
+          <div class="form-group col-md-8">
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Registration</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.registration %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Car make and model</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.make %> <%= @vehicle.model %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Body</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.body %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Rate per hour</u></h7>
+            </div>
+            <div class="form-row justify-year-left">
+              <h7 class="mb-1">$<%= @vehicle.rate %></h7>
+            </div>
+          </div>
+        </div>
+        <div class="form-row justify-content-center">
+          <h5 class= "text-center"><%= label_tag "Select booking time" %></h5>
+        </div>
+        <div class="form-row justify-content-center">
+          
+        </div>
+        <div class="form-group col-md-6">
+            <%= label_tag "Promotional code:" %>
+            <%= text_field_tag 'promo_code', @promo_code, class: "form-control" %>
+        </div>
+      <%= f.submit "Book Vehicle", class: "btn btn-primary btn-block" %>
+    <% end %>
+</div>
