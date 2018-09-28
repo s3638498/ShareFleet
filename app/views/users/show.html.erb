@@ -51,6 +51,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="list-group-row col-md-4">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 font-weight-bold">Total booking cost:</h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-8">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 text-danger font-weight-bold">$<%= @upcomingBooking.total.round(2) %></h7>
+                            </div>
+                        </div>
+                    </div>
                     <br/>
                     <% if !@upcomingBooking.vehicle.nil? %>
                     <div class="form-row">

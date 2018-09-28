@@ -82,7 +82,7 @@ class VehiclesController < ApplicationController
 
   private
     def vehicle_params
-      params.require(:vehicle).permit(:registration,:body,:make,:model,:odometer,:year,:colour,:status,:image)
+      params.require(:vehicle).permit(:registration,:body,:make,:model,:odometer,:year,:colour,:status,:image,:rate)
     end
   
     # Use callbacks to share common setup or constraints between actions.

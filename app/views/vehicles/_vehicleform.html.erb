@@ -45,10 +45,14 @@
         <%= f.label :year %>
         <%= f.text_field :year, class: "form-control" %>
     </div>
-</div>
-<div class="form-group">
-    <%= f.label :colour %>
-    <%= f.text_field :colour, placeholder: "Colour", class: "form-control" %>
+    <div class="form-group col-md-6">
+        <%= f.label :rate %>
+        <%= f.number_field :rate, placeholder: "Rate of per hour rental of the vehicle", step: "0.01", class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+        <%= f.label :colour %>
+        <%= f.text_field :colour, placeholder: "Colour", class: "form-control" %>
+    </div>
 </div>
 <div class="form-group">
     <%= f.label :status %>

@@ -2,6 +2,7 @@ require 'test_helper'
 
 class BookingTest < ActiveSupport::TestCase
   require 'date'
+  require 'active_support/time'
   # test "the truth" do
   #   assert true
   # end
@@ -27,7 +28,8 @@ class BookingTest < ActiveSupport::TestCase
       odometer: "2002",
       year: "2017",
       colour: "Blue",
-      status: "Available")
+      status: "Available",
+      rate: "9.50")
       
     @location = Location.new(
       name: "Test st", 
@@ -38,13 +40,17 @@ class BookingTest < ActiveSupport::TestCase
     @location.vehicles << @vehicle
     
     datetime = DateTime.now
+    pickup_time= (datetime + 1.hours)
+    expected_dropoff_time= (datetime + 6.hours)
+    total_booking_time= (((expected_dropoff_time - pickup_time) * 24 * 60).to_f/60)
     @booking = Booking.new(
-      pickup_time: (datetime + 1.hours),
-      expected_dropoff_time: (datetime + 6.hours)
+      pickup_time: pickup_time,
+      expected_dropoff_time: expected_dropoff_time
       )
     
     @booking.user =  @enduser
     @booking.vehicle = @vehicle
+    @booking.total = total_booking_time * @booking.vehicle.rate
   end
   
   test "Booking should be valid" do
