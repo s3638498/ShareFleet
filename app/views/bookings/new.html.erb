@@ -5,7 +5,7 @@
     <%= form_for(@booking) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-row justify-content-center">
-          <h5 class= "text-center"><%= label_tag "Vehicle location" %></h5>
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Vehicle Location" %></h4>
         </div> 
         <div class="form-row justify-content-center">
           <span class= "center-block">
@@ -17,7 +17,7 @@
         </div>
         </br>
         <div class="form-row justify-content-center">
-          <h5 class= "text-center"><%= label_tag "Selected Vehicle" %></h5>
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Selected Vehicle" %></h4>
         </div>
         <div class="form-row justify-content-center">
           <% if @vehicle.image.attached? %>
@@ -52,19 +52,39 @@
             </div>
             <div class="form-row justify-year-left">
               <h7 class="mb-1">$<%= @vehicle.rate %></h7>
+              <script> 
+                var vec_rate = <%= @vehicle.rate %>;
+                console.log(vec_rate);
+              </script>
             </div>
           </div>
         </div>
         </br>
         <div class="form-row justify-content-center">
-          <h5 class= "text-center"><%= label_tag "Select booking period" %></h5>
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Select booking period" %></h4>
         </div>
         <div class="form-row justify-content-center">
           <div id="calendar"></div>
         </div>
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-6">
+            <u>Pickup period:</u>
+            <%= f.datetime_field :pickup_time, class: 'form-control', id: 'pickup_datetime' %>
+          </div>
+          <div class="form-group col-md-6">
+            <u>Drop off period:</u>
+            <%= f.datetime_field :expected_dropoff_time, class: 'form-control', id: 'drop_datetime' %>
+          </div>
+        </div>
         <div class="form-group col-md-6">
-            <%= label_tag "Promotional code:" %>
-            <%= text_field_tag 'promo_code', @promo_code, class: "form-control" %>
+          <h4 class= "text-danger font-weight-bold"><%= label_tag "Total(before discount)" %></h4>
+        </div>
+        <div class="form-group col-md-6">
+           <%= f.text_field :total, class: 'form-control', readonly: true, id: 'booking_total' %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= label_tag "Promotional code:" %>
+          <%= text_field_tag 'promo_code', @promo_code, class: "form-control" %>
         </div>
       <%= f.submit "Book Vehicle", class: "btn btn-primary btn-block" %>
     <% end %>
