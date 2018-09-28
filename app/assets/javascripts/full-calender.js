@@ -40,13 +40,6 @@ $(document).on('turbolinks:load', function(){
         select: function(start, end, jsEvent, view) {
             console.log(view.name);
 			if ( view.name === "agendaDay") {
-				// start contains the date you have selected
-                // end contains the end date. 
-                // Caution: the end date is exclusive (new since v2).
-                var allDay = !start.hasTime() && !end.hasTime();
-                alert(["Event Start date: " + moment(start).format(),
-                "Event End date: " + moment(end).format(),
-                "AllDay: " + allDay].join("\n"));
                 document.getElementById('pickup_datetime').value = moment(start).toISOString();
                 document.getElementById('drop_datetime').value = moment(end).toISOString();
                 var totalTime = (moment(end).unix() - moment(start).unix())/3600;

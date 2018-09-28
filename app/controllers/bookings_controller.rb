@@ -30,11 +30,17 @@ class BookingsController < ApplicationController
   # POST /bookings
   def create
     @booking = Booking.new(booking_params)
-
+    @user = Enduser.find(params[:user])
+    @vehicle = Vehicle.find(params[:vehicle])
+    @booking.user = @user
+    @booking.vehicle = @vehicle
+    
     if @booking.save
-      redirect_to @booking, notice: 'Booking was successfully created.'
+      flash.now[:success] = "Successfully made a booking!"
+      redirect_to controller: "users", action: "bookingHistory", id: current_user
     else
-      render :new
+      flash[:warning] = "Unable to make a booking, Please select a time period!"
+      redirect_to booking_url
     end
   end
 
