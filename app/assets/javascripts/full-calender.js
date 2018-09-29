@@ -16,6 +16,7 @@ $(document).on('turbolinks:load', function(){
         selectOverlap: false,
         defaultView: 'month',
         events: events_array,
+        eventColor: 'red',
         //Hide all events in month view
         eventRender: function(event, element, view) {
 		if(view.type == 'month') {

@@ -2,9 +2,9 @@
   var events_load = [
     <% @bookingHistory.each do |book| %>
       {
-      title: 'Booked',
-      start  : '<%= book.pickup_time.strftime("%FT%T") %>',
-      end    : '<%= book.expected_dropoff_time.strftime("%FT%T") %>',
+      title: 'Booked out',
+      start  : '<%= book.pickup_time.iso8601 %>',
+      end    : '<%= book.expected_dropoff_time.iso8601 %>',
       allDay: false},
     <% end %>
   ];
