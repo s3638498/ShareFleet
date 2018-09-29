@@ -5,7 +5,7 @@ class PromotionsController < ApplicationController
             if !promo.nil?
                 value = (1 - promo.amount)
             else
-               value = 1
+               value = false
             end
             respond_to do |format|
                 format.json { render json: {"value" => value}}

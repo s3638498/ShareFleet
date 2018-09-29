@@ -31,7 +31,9 @@ $(document).on('turbolinks:load', function(){
         dayClick: function(date, jsEvent, view) {
             var today = new Date();
             today.setDate(today.getDate());
-            if ( date >= today ) {
+            var todayday = moment(today).startOf('day');
+            var clickday = moment(date).startOf('day');
+            if ( clickday >= todayday ) {
                 $('#calendar').fullCalendar('gotoDate',date);
                 $('#calendar').fullCalendar('changeView','agendaDay');
             }
