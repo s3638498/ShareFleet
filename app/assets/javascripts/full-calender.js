@@ -4,13 +4,7 @@ $(document).on('turbolinks:load', function(){
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    var events_array = [
-        {
-        title: 'Booked',
-        start  : '2018-09-30T12:30:00',
-        end    : '2018-09-30T13:30:00',
-        allDay: false}
-    ];
+    var events_array = events_load;
 
     $('#calendar').fullCalendar({
         header: {

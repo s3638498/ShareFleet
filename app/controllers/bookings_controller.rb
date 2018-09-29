@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     #Testing
     @vehicle = Vehicle.last
     @user = current_user
+    @bookingHistory = @vehicle.bookings.where("pickup_time >= ?", DateTime.now)
     
   end
 
