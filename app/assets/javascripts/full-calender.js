@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', function(){
                 document.getElementById('pickup_datetime').value = moment(start).toISOString();
                 document.getElementById('drop_datetime').value = moment(end).toISOString();
                 var totalTime = (moment(end).unix() - moment(start).unix())/3600;
-                document.getElementById('booking_total').value = (totalTime * vec_rate).toFixed(2);;
+                document.getElementById('booking_total').value = (totalTime * vec_rate).toFixed(2);
 			}
         }
     });

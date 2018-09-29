@@ -77,14 +77,15 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <h4 class= "text-danger font-weight-bold"><%= label_tag "Total(before discount)" %></h4>
+          <%= label_tag "Promotional code:" %>
+          <%= text_field_tag 'promo_code', @promo_code, class: "form-control", id: 'promo_code_input' %>
+          <button type="button" id="promo_button">Apply Promotional code</button>
+        </div>
+        <div class="form-group col-md-6">
+          <h4 class= "text-danger font-weight-bold"><%= label_tag "Total" %></h4>
         </div>
         <div class="form-group col-md-6">
            <%= f.text_field :total, class: 'form-control', readonly: true, id: 'booking_total' %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= label_tag "Promotional code:" %>
-          <%= text_field_tag 'promo_code', @promo_code, class: "form-control" %>
         </div>
         <%= hidden_field_tag 'vehicle', @vehicle, value: @vehicle.id, class: "form-control" %>
         <%= hidden_field_tag 'user', @user, value: current_user.id, class: "form-control" %>

@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   
   # Booking
   get   '/booking',  to: 'bookings#new'
+  
+  #Promotion resources
+  get '/checkpromotion', to: 'promotions#checkpromotion'
 
 
   resources :locations do
@@ -58,4 +61,6 @@ Rails.application.routes.draw do
   #Invite user
   get   '/invite',  to: 'invitations#new'
   resources :invitations
+  
+
 end
