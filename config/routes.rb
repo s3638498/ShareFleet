@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   patch "/deletelocation", to: 'locations#destroy'
   put "/assigntolocation", to: 'locations#assignvehicletolocation'
   put "/deletefromlocation", to: 'locations#removevehiclefromlocation'
+  
+  # Booking
+  get   '/booking',  to: 'bookings#new'
+  
+  #Promotion resources
+  get '/checkpromotion', to: 'promotions#checkpromotion'
 
 
   resources :locations do
@@ -55,4 +61,6 @@ Rails.application.routes.draw do
   #Invite user
   get   '/invite',  to: 'invitations#new'
   resources :invitations
+  
+
 end

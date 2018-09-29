@@ -22,7 +22,11 @@
 //= require superfish.min
 //= require bootstrap.min
 //= require bootstrap-sprockets
+//= require moment 
+//= require fullcalendar
 //= require_tree .
+
+
 
 $(document).ready(function(){
 	"use strict";

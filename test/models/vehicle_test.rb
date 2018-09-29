@@ -20,7 +20,8 @@ class VehicleTest < ActiveSupport::TestCase
       odometer: "2002",
       year: "2017",
       colour: "Blue",
-      status: "Available"
+      status: "Available",
+      rate: "14.5"
       )
   end
   
@@ -82,6 +83,21 @@ class VehicleTest < ActiveSupport::TestCase
   
   test "status should be present" do
     @vehicle_valid.status = "     "
+    assert_not @vehicle_valid.valid?
+  end
+  
+  test "rate should be present" do
+    @vehicle_valid.rate = nil
+    assert_not @vehicle_valid.valid?
+  end
+  
+  test "rate should be float" do
+    @vehicle_valid.rate = "0.5a"
+    assert_not @vehicle_valid.valid?
+  end
+  
+  test "rate should be greater_than 0" do
+    @vehicle_valid.rate = "0"
     assert_not @vehicle_valid.valid?
   end
 end

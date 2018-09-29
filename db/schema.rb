@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_174436) do
     t.datetime "updated_at", null: false
     t.integer "vehicle_id"
     t.integer "user_id"
+    t.float "total"
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
   end
@@ -108,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_174436) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "location_id"
+    t.float "rate"
     t.index ["location_id"], name: "index_vehicles_on_location_id"
   end
 

@@ -24,6 +24,7 @@ class Vehicle < ApplicationRecord
     validates :make, presence: true
     validates :model, presence: true
     validates :odometer, presence: true, numericality: { greater_than: 0 }
+    validates :rate, presence: true, numericality: { greater_than: 0 }
     
     VALID_YEAR_REGEX = /\A[12][0-9]*\z/
     validates :year, presence: true,

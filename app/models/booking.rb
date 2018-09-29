@@ -17,4 +17,5 @@ class Booking < ApplicationRecord
         
     validates :vehicle, presence: true
     validates :user, presence: true
+    validates :total, presence: true, numericality: { greater_than: 0 }
 end

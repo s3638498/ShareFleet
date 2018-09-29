@@ -16,6 +16,12 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    
+    #Testing
+    @vehicle = Vehicle.last
+    @user = current_user
+    @bookingHistory = @vehicle.bookings.where("pickup_time >= ?", DateTime.now)
+    
   end
 
   # GET /bookings/1/edit
@@ -25,11 +31,17 @@ class BookingsController < ApplicationController
   # POST /bookings
   def create
     @booking = Booking.new(booking_params)
-
+    @user = Enduser.find(params[:user])
+    @vehicle = Vehicle.find(params[:vehicle])
+    @booking.user = @user
+    @booking.vehicle = @vehicle
+    
     if @booking.save
-      redirect_to @booking, notice: 'Booking was successfully created.'
+      flash.now[:success] = "Successfully made a booking!"
+      redirect_to controller: "users", action: "bookingHistory", id: current_user
     else
-      render :new
+      flash[:warning] = "Unable to make a booking, Please select a time period!"
+      redirect_to booking_url
     end
   end
 
@@ -56,6 +68,6 @@ class BookingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def booking_params
-      params.require(:booking).permit(:pickup_time,:expected_dropoff_time,:payment_received)
+      params.require(:booking).permit(:pickup_time,:expected_dropoff_time,:total)
     end
 end
