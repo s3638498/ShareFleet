@@ -164,6 +164,7 @@ function initMap() {
 
   //map, Melbourne Central 
   var map = new google.maps.Map(
+    // Default position when maps open
     document.getElementById('googleMaps'), {
       zoom: 17, 
       //center: cityxeli
@@ -171,28 +172,45 @@ function initMap() {
     });
 
     // ******** BEGIN POP UP WINDOW ******** //
+    for (var x = 0; x < gon.vehicles.length; x++){
     var contentString = 
       '<div id="content1">'+
       '<div class="container">'+
       '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicles</div>'+
       '<div class="row">'+
       '<div class="col">'+
-      '<img src="https://st.motortrend.com/uploads/sites/10/2017/12/2018-nissan-rogue-s-suv-angular-front.png" alt="nissanSuv" width="300" height="200">'+
+      //'<img src="https://st.motortrend.com/uploads/sites/10/2017/12/2018-nissan-rogue-s-suv-angular-front.png" alt="nissanSuv" width="300" height="200">'+
+      //'<img src= gon.vehicles[x].image >'+
+      //gon.vehicles[x].image +
+      gon.vehicles.image = rails_blob_url(vehicle.image)
+      //rails_blob_url(gon.vehicles[x].image)+
       '</div>'+
       '<div class="col text-center">'+
       '<table class="table">'+
       '<tbody>'+
       '<tr>'+
+      '<th scope="row">Make</th>'+
+      '<td>'+
+      gon.vehicles[x].make +
+      '</td>'+
+      '</tr>'+
+      '<tr>'+
       '<th scope="row">Model</th>'+
-      '<td>Insert</td>'+
+      '<td>'+
+      gon.vehicles[x].model +
+      '</td>'+
       '</tr>'+
       '<tr>'+
       '<th scope="row">Year</th>'+
-      '<td>Insert</td>'+
+      '<td>'+
+      gon.vehicles[x].year +
+      '</td>'+
       '</tr>'+
       '<tr>'+
       '<th scope="row">Body</th>'+
-      '<td>Insert</td>'+
+      '<td>'+
+      gon.vehicles[x].body +
+      '</td>'+
       '</tr>'+
       '</tbody>'+
       '</table>'+
@@ -202,10 +220,9 @@ function initMap() {
       '</div>'+
       '</div>'
     ;
+    }
    // ******** END POP UP WINDOW ******** //
   
-    //Reference for pulling image<%= image_tag "uteSil.png", alt: "Ute", :width => '100px' %>
-    
     for (var i = 0; i < gon.locations.length; i++){
       var gMapsMarker = new google.maps.Marker({
         position: { lat: gon.locations[i].latitude, lng: gon.locations[i].longitude},
@@ -224,21 +241,8 @@ function initMap() {
         return this.gMapsInfo.open(map, this);
       });
 
-      //Stable
-      //gMapsMarker.addListener('click', function() {
-      //  gMapsInfo.open(map, gMapsMarker);
-      //});
-     
-
-      // var info1 = new google.maps.InfoWindow({
-      //   content: contentString,
-      //   maxWidth: 600 
-      // });
-      // marker1.addListener('click', function() {
-      //   info1.open(map,marker1);
-      // });
-
     }
+      // single pop up marker windows content /**** archived ****/
       //var info1 = new google.maps.InfoWindow({
       //  content: contentString,
       //  maxWidth: 600 
@@ -246,8 +250,9 @@ function initMap() {
       //marker1.addListener('click', function() {
       //  info1.open(map,marker1);
       //});
+      //
 
-  //position for marker cityxmc
+  //position for marker cityxmc /**** archived ****/
   // var marker1 = new google.maps.Marker({
   //   position: cityxmc,  
   //   map: map, 
@@ -273,8 +278,7 @@ function initMap() {
   // var marker = new google.maps.Marker({position: carlxlygon, map: map, icon: carMarker});
   // var marker = new google.maps.Marker({position: carlxgrattan, map: map, icon: carMarker});
 
-  // for assignment purpose set no boundaries -> -90, -180 90,180
-  // Set autocomplete project
+  // Set autocomplete project, for assignment purpose set no boundaries -> -90, -180 90,180
   var defaultBounds = new google.maps.LatLngBounds(
    new google.maps.LatLng(-90, -180),
    new google.maps.LatLng(90, 180));
