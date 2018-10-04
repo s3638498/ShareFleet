@@ -41,6 +41,7 @@ $(document).on('turbolinks:load', function(){
                 document.getElementById('drop_datetime').value = moment(end).toISOString();
                 var totalTime = (moment(end).unix() - moment(start).unix())/3600;
                 document.getElementById('booking_total').value = (totalTime * vec_rate).toFixed(2);
+                total = document.getElementById('booking_total').value;
 			}
         }
     });

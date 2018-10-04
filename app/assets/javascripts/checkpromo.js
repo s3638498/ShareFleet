@@ -24,7 +24,9 @@ $(document).ready(function() {
             });
         }
         if(discount != 0 && ((start != document.getElementById('pickup_datetime').value) || (end != document.getElementById('drop_datetime').value))){
-            document.getElementById('booking_total').value = (document.getElementById('booking_total').value * discount).toFixed(2);
+            amount = (document.getElementById('booking_total').value * discount).toFixed(2);
+            document.getElementById('booking_total').value = amount;
+            total = amount;
             start = document.getElementById('pickup_datetime').value;
             end = document.getElementById('drop_datetime').value;
         }

@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
     @booking.vehicle = @vehicle
     
     if @booking.save
-      flash.now[:success] = "Successfully made a booking!"
+      flash[:success] = "Successfully made a booking!"
       redirect_to controller: "users", action: "bookingHistory", id: current_user
     else
       flash[:warning] = "Unable to make a booking, Please select a time period!"
