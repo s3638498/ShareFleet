@@ -144,24 +144,6 @@ function initMap() {
  // car marker hosted on imgur
   var carMarker = "https://i.imgur.com/7Vts37R.png";
 
-  //3000 City
-  //var cityxmc = {lat: -37.811316, lng: 144.962345};
-  // var cityxeli = {lat: -37.812621, lng: 144.961197};
-  // var cityxflin = {lat: -37.817611, lng: 144.964273};
-  // var cityxltbourke = {lat: -37.816001, lng: 144.953093};
-  // var cityxspring = {lat: -37.813479, lng: 144.973582};
-
-  // //3002 East Melbourne
-  // var eastxalbert = {lat: -37.810182, lng: 144.981044};
-
-  // //3008 Docklands
-  // var dockxbourke = {lat: -37.819007, lng: 144.946385};
-  // var dockxlatrobe = {lat: -37.814998, lng: 144.945537};
-  // 
-  // //3053 Carlton
-  // var carlxlygon = {lat: -37.798246, lng: 144.967267};
-  // var carlxgrattan = {lat: -37.800836, lng: 144.967508};
-
   //map, Melbourne Central 
   var map = new google.maps.Map(
     // Default position when maps open
@@ -189,6 +171,9 @@ function initMap() {
         //Rails.application.routes.url_helpers.rails_blob_url(vehicles.image)
         //Rails.application.routes.url_helpers.rails_blob_url(vehicles.image, host: 'lvh.me:3000')
         //gon.image = rails_blob_url(vehicles[x].image)
+        //'<img src="' + gon.vehicles[x].get_image + '">'+
+        '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+'">'+
+        console.log(gon.vehicle_images);
         '</div>'+
         '<div class="col text-center">'+
         '<table class="table">'+
@@ -242,46 +227,18 @@ function initMap() {
 
       gMapsMarker.gMapsInfo = gMapsInfo;
 
-      gMapsMarker.addListener('click', function() {
-        return this.gMapsInfo.open(map, this);
-      });
+       gMapsMarker.addListener('click', function() {
+         return this.gMapsInfo.open(map, this);
+       });
 
+      //google.maps.event.addListener(gMapsMarker[key], 'click', function(innerKey){
+      // google.maps.event.addListener(gMapsMarker[key], 'click', function(innerKey){
+      //   return function(){
+      //     this.gMapsInfo.open(map, this);
+      //     //gMapsInfo[innerKey].open(map, gMapsMarker[innerKey])
+      //   }
+      // });
     }
-      // single pop up marker windows content /**** archived ****/
-      //var info1 = new google.maps.InfoWindow({
-      //  content: contentString,
-      //  maxWidth: 600 
-      //});
-      //marker1.addListener('click', function() {
-      //  info1.open(map,marker1);
-      //});
-      //
-
-  //position for marker cityxmc /**** archived ****/
-  // var marker1 = new google.maps.Marker({
-  //   position: cityxmc,  
-  //   map: map, 
-  //   icon: carMarker
-  // });
-
-
-  // The car marker, positioned for City 3000
-  //var marker = new google.maps.Marker({position: cityxmc, map: map, icon: carMarker});
-  //var marker = new google.maps.Marker({position: cityxeli, map: map, icon: carMarker});
-  // var marker = new google.maps.Marker({position: cityxflin, map: map, icon: carMarker});
-  // var marker = new google.maps.Marker({position: cityxltbourke, map: map, icon: carMarker});
-  // var marker = new google.maps.Marker({position: cityxspring, map: map, icon: carMarker});
-
-  // // The car marker, positioned for East Melbourne 3002
-  // var marker = new google.maps.Marker({position: eastxalbert, map: map, icon: carMarker});
-
-  // // The car marker, positioned for Docklands 3008
-  // var marker = new google.maps.Marker({position: dockxbourke, map: map, icon: carMarker});
-  // var marker = new google.maps.Marker({position: dockxlatrobe, map: map, icon: carMarker});
-
-  // // The car marker, positioned for Carlton 3053
-  // var marker = new google.maps.Marker({position: carlxlygon, map: map, icon: carMarker});
-  // var marker = new google.maps.Marker({position: carlxgrattan, map: map, icon: carMarker});
 
   // Set autocomplete project, for assignment purpose set no boundaries -> -90, -180 90,180
   var defaultBounds = new google.maps.LatLngBounds(

@@ -33,4 +33,11 @@ class Vehicle < ApplicationRecord
     
     validates :colour, presence: true
     validates :status, presence: true
+
+    def get_image
+        return nil unless image.attached?
+        #ActiveStorage::Blob.service.send(:path_for, image_attachment.key)
+        ActionController::Base.helpers.image_tag(image)
+    end
+
 end
