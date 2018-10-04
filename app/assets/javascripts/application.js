@@ -158,7 +158,7 @@ function initMap() {
     var contentString = 
       '<div id="content1">'+
         '<div class="container">'+
-        '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicles</div>'+
+        '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicless</div>'+
         '<div class="row">'+
         '<div class="col">'+
         '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+' width="200px" height="200px">'+
