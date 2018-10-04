@@ -161,19 +161,8 @@ function initMap() {
         '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicles</div>'+
         '<div class="row">'+
         '<div class="col">'+
-        //'<img src="https://st.motortrend.com/uploads/sites/10/2017/12/2018-nissan-rogue-s-suv-angular-front.png" alt="nissanSuv" width="300" height="200">'+
-        //'<img src= gon.vehicles[x].image >'+
-        //gon.vehicles[x].rails_blob_url(vehicles.image) +
-        //gon.vehicles.image = rails_blob_url(vehicle.image)
-        //rails_blob_url(vehicles.image)+
-        //'url_for(vehicles.image)' +
-        //gon.image = rails_blob_url(vehicles.image) +
-        //Rails.application.routes.url_helpers.rails_blob_url(vehicles.image)
-        //Rails.application.routes.url_helpers.rails_blob_url(vehicles.image, host: 'lvh.me:3000')
-        //gon.image = rails_blob_url(vehicles[x].image)
-        //'<img src="' + gon.vehicles[x].get_image + '">'+
-        '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+'">'+
-        console.log(gon.vehicle_images);
+        '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+' width="200px" height="200px">'+
+        //console.log(gon.vehicle_images);
         '</div>'+
         '<div class="col text-center">'+
         '<table class="table">'+
