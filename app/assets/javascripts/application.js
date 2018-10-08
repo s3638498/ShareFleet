@@ -156,7 +156,6 @@ function initMap() {
     for (var x = 0; x < gon.vehicles.length; x++){
       if (i<gon.vehicles.length){
         if (gon.vehicles[x].location_id == gon.locations[i].id){
-        //if (gon.vehicles[x]location_id.hasOwnProperty){
           var contentString="";
             //alert(gon.vehicles[x].model);
             contentString = 
@@ -196,13 +195,12 @@ function initMap() {
               '</tr>'+
               '</tbody>'+
               '</table>'+
-              '<a href="booking" class="btn btn-info" role="button">Book Now</a>'+ 
+              "<a href=booking?vec=" + gon.vehicles[x].id +  " class='btn btn-info' role='button'>Book Now</a>"+
               '</div>'+
               '</div>'+
               '</div>'+
             '</div>'
             ;    
-          //  }
           }
         }
       }

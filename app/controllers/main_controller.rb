@@ -10,6 +10,7 @@ class MainController < ApplicationController
     gon.vehicle_images = Hash.new
     Vehicle.all.each do |v|
       gon.vehicle_images[v.id] = v.image_attachment.try(:service_url)
-    end
+  end
+
   end
 end
