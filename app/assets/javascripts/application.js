@@ -151,114 +151,67 @@ function initMap() {
       //center: cityxeli
       center: { lat: gon.locations[0].latitude, lng: gon.locations[0].longitude}
     });
-
   
-    for (var i = 0; i < gon.locations.length; i++){
-        for (var x = 0; x < gon.vehicles.length; x++){
+  for (var i = 0; i < gon.locations.length; i++){
+    for (var x = 0; x < gon.vehicles.length; x++){
       if (i<gon.vehicles.length){
         if (gon.vehicles[x].location_id == gon.locations[i].id){
-    var contentString="";
-        //alert(gon.vehicles[x].model);
-     contentString = 
-      '<div id="content1">'+
-        '<div class="container">'+
-        '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicless</div>'+
-        '<div class="row">'+
-        '<div class="col">'+
-        '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+' width="150px" height="150px">'+
-        '</div>'+
-        '<div class="col text-center">'+
-        '<table class="table">'+
-        '<tbody>'+
-        '<tr>'+
-        '<th scope="row">Make</th>'+
-        '<td>'+
-        gon.vehicles[x].make +
-        '</td>'+
-        '</tr>'+
-        '<tr>'+
-        '<th scope="row">Model</th>'+
-        '<td>'+
-        gon.vehicles[x].model +
-        '</td>'+
-        '</tr>'+
-        '<tr>'+
-        '<th scope="row">Year</th>'+
-        '<td>'+
-        gon.vehicles[x].year +
-        '</td>'+
-        '</tr>'+
-        '<tr>'+
-        '<th scope="row">Body</th>'+
-        '<td>'+
-        gon.vehicles[x].body +
-        '</td>'+
-        '</tr>'+
-        '</tbody>'+
-        '</table>'+
-        '<button type="button" class="btn btn-primary">Book Now</button>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-      '</div>'
-    ; 
-    }
-    }
-    }
+        //if (gon.vehicles[x]location_id.hasOwnProperty){
+          var contentString="";
+            //alert(gon.vehicles[x].model);
+            contentString = 
+            '<div id="content1">'+
+              '<div class="container">'+
+              '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicless</div>'+
+              '<div class="row">'+
+              '<div class="col">'+
+              '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+' width="150px" height="150px">'+
+              '</div>'+
+              '<div class="col text-center">'+
+              '<table class="table">'+
+              '<tbody>'+
+              '<tr>'+
+              '<th scope="row">Make</th>'+
+              '<td>'+
+              gon.vehicles[x].make +
+              '</td>'+
+              '</tr>'+
+              '<tr>'+
+              '<th scope="row">Model</th>'+
+              '<td>'+
+              gon.vehicles[x].model +
+              '</td>'+
+              '</tr>'+
+              '<tr>'+
+              '<th scope="row">Year</th>'+
+              '<td>'+
+              gon.vehicles[x].year +
+              '</td>'+
+              '</tr>'+
+              '<tr>'+
+              '<th scope="row">Body</th>'+
+              '<td>'+
+              gon.vehicles[x].body +
+              '</td>'+
+              '</tr>'+
+              '</tbody>'+
+              '</table>'+
+              '<a href="booking" class="btn btn-info" role="button">Book Now</a>'+ 
+              '</div>'+
+              '</div>'+
+              '</div>'+
+            '</div>'
+            ;    
+          //  }
+          }
+        }
+      }
 
       var gMapsMarker = new google.maps.Marker({
         position: { lat: gon.locations[i].latitude, lng: gon.locations[i].longitude},
         map: map,
         icon: carMarker
         });
-    // ******** BEGIN POP UP WINDOW ******** //
-    //for (var x = 0; x < gon.vehicles.length; x++){
-    // contentString = 
-    //  '<div id="content1">'+
-    //    '<div class="container">'+
-    //    '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicless</div>'+
-    //    '<div class="row">'+
-    //    '<div class="col">'+
-    //    '<img src="'+ gon.vehicle_images[gon.vehicles[x].id]+' width="200px" height="200px">'+
-    //    '</div>'+
-    //    '<div class="col text-center">'+
-    //    '<table class="table">'+
-    //    '<tbody>'+
-    //    '<tr>'+
-    //    '<th scope="row">Make</th>'+
-    //    '<td>'+
-    //    gon.vehicles[x].make +
-    //    '</td>'+
-    //    '</tr>'+
-    //    '<tr>'+
-    //    '<th scope="row">Model</th>'+
-    //    '<td>'+
-    //    gon.vehicles[x].model +
-    //    '</td>'+
-    //    '</tr>'+
-    //    '<tr>'+
-    //    '<th scope="row">Year</th>'+
-    //    '<td>'+
-    //    gon.vehicles[x].year +
-    //    '</td>'+
-    //    '</tr>'+
-    //    '<tr>'+
-    //    '<th scope="row">Body</th>'+
-    //    '<td>'+
-    //    gon.vehicles[x].body +
-    //    '</td>'+
-    //    '</tr>'+
-    //    '</tbody>'+
-    //    '</table>'+
-    //    '<button type="button" class="btn btn-primary">Book Now</button>'+
-    //    '</div>'+
-    //    '</div>'+
-    //    '</div>'+
-    //  '</div>'
-    //;
-    //}
-
-   // ******** END POP UP WINDOW ******** //
 
       var gMapsInfo = new google.maps.InfoWindow({
         content: contentString,
@@ -266,16 +219,10 @@ function initMap() {
       });
 
       gMapsMarker.gMapsInfo = gMapsInfo;
-
-       //gMapsMarker.addListener('click', function() {
-       //  return this.gMapsInfo.open(map, this);
-       //});
        
        google.maps.event.addListener(gMapsMarker, 'click', function() {
-//	 	this.gMapsInfo.setContent(gMapsMarker, this);
 	 	this.gMapsInfo.open(map, this);
 	});
-
     }
   // Completed set red marker base on user input
   // Set autocomplete project, for assignment purpose set no boundaries -> -90, -180 90,180
@@ -346,6 +293,7 @@ infowindow.open(map, marker);
 
 });
 }
+
 // ******** END Google Maps ********* //
 
 
