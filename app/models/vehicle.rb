@@ -34,4 +34,5 @@ class Vehicle < ApplicationRecord
     
     validates :colour, presence: true
     validates :status, presence: true
+
 end
