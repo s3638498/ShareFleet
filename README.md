@@ -43,3 +43,12 @@
 
 ### Amazon Simple Email Service (SES)
 * email:  booking, passcode and billing
+
+
+### server configuration
+new user : sfadmin
+sudo adduser sfadmin sudo -> add sfadmin to sudo group
+app live : /var/www/sfwww/
+
+EDITOR=vim rails credentials:edit -> generate master.key in rails 5 
+
