@@ -27,7 +27,6 @@
 //= require_tree .
 
 
-
 $(document).ready(function(){
 	"use strict";
 
@@ -156,13 +155,14 @@ function initMap() {
       center: { lat: gon.locations[0].latitude, lng: gon.locations[0].longitude}
     });
   
+
   for (var i = 0; i < gon.locations.length; i++){
+        var contentString="";
     for (var x = 0; x < gon.vehicles.length; x++){
       if (i<gon.vehicles.length){
         if (gon.vehicles[x].location_id == gon.locations[i].id){
-          var contentString="";
             //alert(gon.vehicles[x].model);
-            contentString = 
+            contentString += 
             '<div id="content1">'+
               '<div class="container">'+
               '<div class="p-3 mb-6 bg-dark text-white text-center" style="margin-bottom:30px;" >Available Vehicless</div>'+
@@ -226,6 +226,8 @@ function initMap() {
 	 	this.gMapsInfo.open(map, this);
 	});
     }
+
+
   // Completed set red marker base on user input
   // Set autocomplete project, for assignment purpose set no boundaries -> -90, -180 90,180
   var defaultBounds = new google.maps.LatLngBounds(
