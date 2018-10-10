@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     
     #Testing
-    @vehicle = Vehicle.last
+    @vehicle = Vehicle.find(params[:vec])
     @user = current_user
     @bookingHistory = @vehicle.bookings.where("pickup_time >= ?", DateTime.now)
     

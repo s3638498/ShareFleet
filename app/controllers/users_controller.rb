@@ -24,7 +24,9 @@ class UsersController < ApplicationController
         break
       end
     end
-    
+    if !@upcomingBooking.present?
+      redirect_to(root_url)
+    end
   end
 
   def bookingHistory
