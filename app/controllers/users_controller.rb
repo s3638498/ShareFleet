@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def signup
     @users = Enduser.all
   end
-  
+
   # GET /users
   def index
     @users = Enduser.all
@@ -15,12 +15,31 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    now = DateTime.now
     @user = Enduser.find(params[:id])
+    bookings = @user.bookings.order('pickup_time')
+    bookings.each do |book|
+      if now.between?(book.pickup_time, book.expected_dropoff_time)
+        @upcomingBooking = book
+        break
+      end
+    end
+    if !@upcomingBooking.present?
+      redirect_to(root_url)
+    end
+  end
+
+  def bookingHistory
+    @user = Enduser.find(params[:id])
+    @bookings = @user.bookings.order('pickup_time')
   end
 
   # GET /users/new
   def new
     @user = Enduser.new
+    if !params[:referer].blank?
+      @referer = params[:referer]
+    end
   end
 
   # GET /users/1/edit
@@ -31,9 +50,27 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = Enduser.new(user_params)
-
     if @user.save
-      flash[:success] = "Successfully created account!"
+      if !params[:referer].blank? && !(referer = Enduser.where(email: params[:referer]).first).nil?
+        
+        #Generate codes for referer and referee
+        refererCode = CouponCode.generate(parts: 2)
+        Promotion.create!(
+          code: refererCode, 
+          amount: "0.10")
+          
+        refereeCode = CouponCode.generate(parts: 2)
+        Promotion.create!(
+          code: refereeCode, 
+          amount: "0.10")
+          
+        #Send code to users
+        UserMailer.send_promo_code(referer.email,refererCode).deliver
+        UserMailer.send_promo_code(@user.email,refereeCode).deliver
+        flash[:success] = "Successfully created account, promotional code sent!"
+      else
+        flash[:success] = "Successfully created account!"
+      end
       log_in @user
       redirect_to :controller => 'users', :action => 'show', :id => @user.id
     else
@@ -59,55 +96,37 @@ class UsersController < ApplicationController
 
   #Deactivate account
   def deactivate
-      @user = User.find(params[:id])
+      @user = Enduser.find(params[:id])
       if @user.update_attributes(locked:true)
-      redirect_to users_path 
+      redirect_to users_path
       else
-      flash[:danger] = "Error deactivate account"  
-      redirect_to(root_url) 
+      flash[:danger] = "Error deactivate account"
+      redirect_to(root_url)
       end
   end
-  
+
   #Reactivate account
   def reactivate
-      @user = User.find(params[:id])
+      @user = Enduser.find(params[:id])
       if @user.update(locked: false)
-      redirect_to users_path 
+      redirect_to users_path
       else
-      flash[:danger] = "Error reactivate account"  
+      flash[:danger] = "Error reactivate account"
       redirect_to :back
       end
   end
-  
+
   private
     def user_params
       params.require(:enduser).permit(:username,:password, :password_confirmation,:first_name,:last_name,:date_of_birth,:email,:contact_number,:address,:driver_licence,:locked)
     end
-  
-  
+
+
     # Before filters
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      else
-        @user = User.find(current_user.id)
-      end
-    end
-    
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
-<<<<<<< HEAD
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless current_user.class.name == "Administrator"
-    end
-      
-=======
->>>>>>> 03e24448c2bc9f1317cfc5981c03c3cec5ce250a
+
 end

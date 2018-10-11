@@ -10,6 +10,7 @@ class Vehicle < ApplicationRecord
     #Allow an image attachment using Active storage
     has_one_attached :image
     belongs_to :location, optional: true
+    has_many :bookings, dependent: :nullify
     
     scope :with_eager_loaded_images, -> { eager_load(images_attachments: :blob) }
     
@@ -23,6 +24,7 @@ class Vehicle < ApplicationRecord
     validates :make, presence: true
     validates :model, presence: true
     validates :odometer, presence: true, numericality: { greater_than: 0 }
+    validates :rate, presence: true, numericality: { greater_than: 0 }
     
     VALID_YEAR_REGEX = /\A[12][0-9]*\z/
     validates :year, presence: true,
@@ -32,4 +34,5 @@ class Vehicle < ApplicationRecord
     
     validates :colour, presence: true
     validates :status, presence: true
+
 end

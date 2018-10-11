@@ -1,0 +1,12 @@
+<div class="container-fluid col-md-8">
+  <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		<h2>Refer a friend</h2>
+	</div>
+  <%= form_for(:invitation, url: invitations_path) do |f| %>
+    <%= f.label :recipient_email %>
+    <%= f.email_field :recipient_email, class: 'form-control' %>
+    <%= f.hidden_field :sender_email, :value => @referer %>
+    </br>
+    <%= f.submit "Send Invitation", class: "btn btn-block btn-primary" %>
+  <% end %>
+</div>

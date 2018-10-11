@@ -1,0 +1,189 @@
+<script>
+  var events_load = [
+    <% @bookingHistory.each do |book| %>
+      {
+      title: 'Booked out',
+      start  : '<%= book.pickup_time.iso8601 %>',
+      end    : '<%= book.expected_dropoff_time.iso8601 %>',
+      allDay: false},
+    <% end %>
+  ];
+  console.log(events_load);
+</script>
+
+<div class="container-fluid col-md-8">
+    <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		  <h2>Booking a review</h2>
+	  </div>
+    <%= form_for(@booking, html: {id: "booking_form"}) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-row justify-content-center">
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Vehicle Location" %></h4>
+        </div> 
+        <div class="form-row justify-content-center">
+          <span class= "center-block">
+            <%= image_tag "https://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@vehicle.location.latitude}%2C#{@vehicle.location.longitude}&key=AIzaSyC8gnvfxDpVNtV4o39R1hULlcBUHhyGpK0", class: "mx-auto d-block" %>
+          </span>
+        </div>
+        <div class="form-row justify-content-center">
+          <p class="text-danger text-center"><%= label_tag @vehicle.location.address %></p>
+        </div>
+        </br>
+        <div class="form-row justify-content-center">
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Selected Vehicle" %></h4>
+        </div>
+        <div class="form-row justify-content-center">
+          <% if @vehicle.image.attached? %>
+            <div class="form-group col-md-4">
+               <%= image_tag @vehicle.image, class: "mx-auto d-block", style: 'height:100%;width:100%;' %>
+            </div>
+          <% else %>
+            <%# IF THERE IS NO IMAGE ATTACHED TO VEHICLE %>
+          <% end %>
+          
+          <div class="form-group col-md-8">
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Registration</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.registration %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Car make and model</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.make %> <%= @vehicle.model %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Body</u></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><%= @vehicle.body %></h7>
+            </div>
+            <div class="form-row justify-content-left">
+              <h7 class="mb-1"><u>Rate per hour</u></h7>
+            </div>
+            <div class="form-row justify-year-left">
+              <h7 class="mb-1">$<%= @vehicle.rate %></h7>
+              <script> 
+                var vec_rate = <%= @vehicle.rate %>;
+                console.log(vec_rate);
+              </script>
+            </div>
+          </div>
+        </div>
+        </br>
+        <div class="form-row justify-content-center">
+          <h4 class= "text-center text-danger text-capitalize font-weight-bold"><%= label_tag "Select booking period" %></h4>
+        </div>
+        <div class="form-row justify-content-center">
+          <div id="calendar"></div>
+        </div>
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-6">
+            <u>Pickup period:</u>
+            <%= f.datetime_field :pickup_time, class: 'form-control', readonly: true, id: 'pickup_datetime' %>
+          </div>
+          <div class="form-group col-md-6">
+            <u>Drop off period:</u>
+            <%= f.datetime_field :expected_dropoff_time, class: 'form-control', readonly: true, id: 'drop_datetime' %>
+          </div>
+        </div>
+        <div class="form-row justify-content-center">
+          <div class="form-group col-md-6">
+            <%= label_tag "Promotional code:" %>
+            <%= text_field_tag 'promo_code', @promo_code, class: "form-control", id: 'promo_code_input' %>
+            <button type="button" id="promo_button">Apply Promotional code</button>
+          </div>
+          <div class="form-group col-md-6">
+            <h6 id= "discount_label">&nbsp</h6>
+            <h6 class= "text-center text-danger font-weight-bold", id= "discount_label"><%= label_tag "" %></h6>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <h4 class= "text-danger font-weight-bold"><%= label_tag "Total" %></h4>
+        </div>
+        <div class="form-group col-md-6">
+           <%= f.text_field :total, class: 'form-control', readonly: true, id: 'booking_total' %>
+        </div>
+        <%= hidden_field_tag 'vehicle', @vehicle, value: @vehicle.id, class: "form-control" %>
+        <%= hidden_field_tag 'user', @user, value: current_user.id, class: "form-control" %>
+      <div id="paypal-button"></div>
+      <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+      <script>
+      var glob_total;
+        paypal.Button.render({
+          // Configure environment
+          env: 'sandbox',
+          client: {
+            sandbox: 'Af4QMHCL6b0fzBmP4zstXA0TG-7MozupH4uq8aG8OciCd-t_Z_VqLwRqM-4Y8dqL6375vPuVcEsdrzl5',
+            production: 'demo_production_client_id'
+          },
+          // Customize button (optional)
+          locale: 'en_AU',
+          style: {
+            size: 'large',
+            color: 'blue',
+            shape: 'rect',
+          },
+          // Set up a payment
+          payment: function(data, actions) {
+            return actions.payment.create({
+              transactions: [{
+                amount: {
+                  total,
+                  currency: 'AUD'
+                }
+              }]
+            });
+          },
+          // Execute the payment
+          onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+              $("#booking_form").submit();
+            });
+          }
+        }, '#paypal-button');
+      
+      </script>
+      <%= link_to "Cancel", root_path, {class:"btn btn-warning btn-block"} %>
+    <% end %>
+</div>
+
+<script>
+  $(document).ready(function() { 
+    var discount = 0;
+    var start = null;
+    var end = null;
+    $("#promo_button").on('click',function(){
+        var val = document.getElementById('promo_code_input').value;
+        if(discount == 0){
+            $.ajax({
+              type: "GET",
+              url: "/checkpromotion",
+              dataType: "JSON",
+              data: { 'code': val },
+              success: function(data) {
+                console.log(data);
+                if(data["value"] === false){
+                    //document.getElementById('discount_label').value = "Invalid code";
+                }else{
+                    discount = data["value"].toFixed(2);
+                    document.getElementById('booking_total').value = (document.getElementById('booking_total').value * discount).toFixed(2);
+                    start = document.getElementById('pickup_datetime').value;
+                    end = document.getElementById('drop_datetime').value;
+                }
+              }
+            });
+        }
+        if(discount != 0 && ((start != document.getElementById('pickup_datetime').value) || (end != document.getElementById('drop_datetime').value))){
+            amount = (document.getElementById('booking_total').value * discount).toFixed(2);
+            document.getElementById('booking_total').value = amount;
+            total = amount;
+            start = document.getElementById('pickup_datetime').value;
+            end = document.getElementById('drop_datetime').value;
+        }
+    }) 
+});
+  
+</script>

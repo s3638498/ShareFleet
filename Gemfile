@@ -21,10 +21,22 @@ gem 'turbolinks', '~> 5'
 gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap', '~> 4.1.3'
+#gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 #Location Geocoder
 gem 'geocoder'
+#coupon code generation
+gem 'coupon_code'
+# REST API Paypal
+gem 'gon'
+gem 'rabl-rails'
+
+#Timeliness Gem for date time validation in Booking
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
+
+#Full-calender
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -7,10 +7,12 @@
 
 <% if mode == "add" %>
     <% pathTo = assigntolocation_path(locid: locationid, vecid: vehicle.id) %>
+    <% confirmPrompt = {method: "put"} %>
 <% elsif mode == "remove" %>
     <% pathTo = deletefromlocation_path(locid: locationid, vecid: vehicle.id) %>
+    <% confirmPrompt = {method: "put", data: { confirm: "Are you sure?" }} %>
 <% end %>
-<%= link_to pathTo, {method: "put", data: { confirm: "Are you sure?" }} do %>
+<%= link_to pathTo, confirmPrompt do %>
     <li class="list-group-item">
         <div class="form-row">
             <div class="list-group-row col-md-4">

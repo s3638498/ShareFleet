@@ -1,0 +1,135 @@
+<%# 
+    Author: Ryan Tran
+    Student number: s3201690
+    
+    Enduser view of all their Bookings
+%>
+
+<div class="container-fluid col-md-8">
+    <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		<h2>Booking History</h2>
+	</div>
+	<div class="list-group">
+	    <% if @bookings.empty? %>
+            <h4>You have no bookings</h4>
+        <% else %>
+            <% @bookings.each do |book| %>
+                <li class="list-group-item">
+                    <% if !book.vehicle.nil? && !book.vehicle.location.nil? %>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Pickup/Dropoff Address:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= book.vehicle.location.address %></h7>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                    <div class="form-row">
+                        <div class="list-group-row col-md-4">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 font-weight-bold">Pickup time:</h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-8">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 text-danger font-weight-bold"><%= book.pickup_time.in_time_zone("Melbourne").strftime("%I:%M%p %d/%m/%Y") %></h7>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="list-group-row col-md-4">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 font-weight-bold">Dropoff time:</h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-8">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 text-danger font-weight-bold"><%= book.expected_dropoff_time.in_time_zone("Melbourne").strftime("%I:%M%p %d/%m/%Y") %></h7>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="list-group-row col-md-4">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 font-weight-bold">Total booking cost:</h7>
+                            </div>
+                        </div>
+                        <div class="list-group-row col-md-8">
+                            <div class="d-flex w-100 justify-content-md-left">
+                                <h7 class="mb-1 text-danger font-weight-bold">$<%= book.total.round(2) %></h7>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <% if !book.vehicle.nil? %>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Vehicle Registration:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= book.vehicle.registration %></h7>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Hourly rate:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold">$<%= book.vehicle.rate %></h7>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Booked vehicle:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= book.vehicle.make %> <%= book.vehicle.model %></h7>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Colour:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= book.vehicle.colour %></h7>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="list-group-row col-md-4">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 font-weight-bold">Year:</h7>
+                                </div>
+                            </div>
+                            <div class="list-group-row col-md-8">
+                                <div class="d-flex w-100 justify-content-md-left">
+                                    <h7 class="mb-1 text-danger font-weight-bold"><%= book.vehicle.year %></h7>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </li>
+            <% end %>
+        <% end %>
+    </div>
+</div>

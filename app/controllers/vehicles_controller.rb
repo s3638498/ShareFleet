@@ -30,6 +30,22 @@ class VehiclesController < ApplicationController
   def edit
     @vehicle = Vehicle.find(params[:id])
   end
+  
+  # PATCH/PUT /vehicles/1
+  def setStatusPickup
+    @booking = Booking.find(params[:id])
+    @vehicle = @booking.vehicle
+    @vehicle.update(:status => "Pickedup")
+    redirect_to :controller => 'users', :action => 'show', :id => @booking.user.id
+  end
+  
+  def setStatusAvailable
+    @booking = Booking.find(params[:id])
+    @vehicle = @booking.vehicle
+    @vehicle.update(:status => "Available")
+    flash[:success] = "Vehicle has been dropped off!"
+    redirect_to :controller => 'users', :action => 'show', :id => @booking.user.id
+  end
 
   # POST /vehicles
   def create
@@ -54,14 +70,19 @@ class VehiclesController < ApplicationController
 
   # DELETE /vehicles/1
   def destroy
-    @vehicle.destroy
-    flash[:success] = "Deleted vehicle!"
-    redirect_to :controller => 'vehicles', :action => 'index'
+    if @vehicle.status != "Pickedup"
+      @vehicle.destroy
+      flash[:success] = "Deleted vehicle!"
+      redirect_to :controller => 'vehicles', :action => 'index'
+    else
+      flash[:danger] = "Vehicle is currently booked, unable to delete!"
+      render :edit
+    end
   end
 
   private
     def vehicle_params
-      params.require(:vehicle).permit(:registration,:body,:make,:model,:odometer,:year,:colour,:status,:image)
+      params.require(:vehicle).permit(:registration,:body,:make,:model,:odometer,:year,:colour,:status,:image,:rate)
     end
   
     # Use callbacks to share common setup or constraints between actions.
@@ -71,6 +92,6 @@ class VehiclesController < ApplicationController
     
     def getConstants
       @BODYTYPE = ["Ute", "Sedan", "Hatch", "SUV"]
-      @STATUSES = [ "Available", "Locked", "Unlocked", "Service" ]
+      @STATUSES = [ "Available", "Pickedup", "Service" ]
     end
 end

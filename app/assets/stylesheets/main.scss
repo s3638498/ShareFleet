@@ -1980,28 +1980,11 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
 }
 
-/* Nav Menu Arrows */
-.sf-arrows .sf-with-ul {
-  padding-right: 30px;
-}
-
-.sf-arrows .sf-with-ul:after {
-  content: "\f107";
-  position: absolute;
-  right: 15px;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-}
-
-.sf-arrows ul .sf-with-ul:after {
-  content: "\f105";
-}
-
 /* Nav Meu Container */
 #nav-menu-container {
   margin: 0;
 }
+
 
 @media (max-width: 768px) {
   #nav-menu-container {
@@ -2009,6 +1992,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/*hide norm view navbar*/
+@media (max-width: 1000px) {
+  #header{
+    display: none;
+  }
+}
 /* Nav Meu Styling */
 .nav-menu a {
   padding: 6px 10px;
@@ -2059,25 +2048,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Nav Toggle */
-#mobile-nav-toggle {
-  position: fixed;
-  right: 15px;
-  z-index: 999;
-  top: 16px;
-  border: 0;
-  background: none;
-  font-size: 24px;
-  display: none;
-  transition: all 0.4s;
-  outline: none;
-  cursor: pointer;
-}
 
 #mobile-nav-toggle i {
   color: #fff;
   font-weight: 900;
 }
-
+/*
 @media (max-width: 960px) {
   #mobile-nav-toggle {
     display: inline;
@@ -2086,6 +2062,7 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
 }
+*/
 
 /* Mobile Nav Styling */
 #mobile-nav {
@@ -2194,12 +2171,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 16px;
   margin-bottom: 0;
 }
-
+/*
 @media (max-width: 991.98px) {
   .section-title p br {
     display: none;
   }
 }
+*/
 
 .primary-btn {
   background-color: #fab700;
@@ -2269,6 +2247,18 @@ body.mobile-nav-active #mobile-nav-toggle {
   bottom: 0;
 }
 
+.guide{
+    background-color: grey;
+    width: 100%;
+    height: 700px;
+    background: url(asset_path("step-guide-full.png"));
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 60px;
+    border-color: yellow;
+}
+
 .banner-area {
   /*umage store in app/assests/images*/
   background: url(asset_path("header-bg.jpg"));
@@ -2278,12 +2268,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 .banner-area .overlay-bg {
   background-color: rgba(0, 0, 0, 0.8);
 }
-
+/*
 @media (max-width: 767px) {
   .fullscreen {
     height: 100% !important;
   }
 }
+*/
 
 .banner-content {
   text-align: left;
@@ -2299,7 +2290,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .banner-content h1 span {
   font-weight: 700;
 }
-
+/*
 @media (max-width: 991.98px) {
   .banner-content h1 {
     font-size: 36px;
@@ -2323,6 +2314,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: 32px;
   }
 }
+*/
 
 .banner-content h6 {
   font-size: 14px;
@@ -3495,3 +3487,97 @@ body.mobile-nav-active #mobile-nav-toggle {
                End Blog Details  Page style
 ################
 */
+
+/*
+################
+               Google Page Style
+################
+*/
+#googleMaps{
+    width: 100%;
+    height: 700px;
+    background-color: grey;
+}
+
+
+.googleSearch{
+    margin-bottom: 15px;
+}
+
+.searchBar{
+    padding-right: 15px;
+}
+
+/*googleMaps search bar*/
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Redo navigation bar*/
+@media (min-width: 999px) {
+  .nav-mobile-view{
+    display: none;
+  }
+}
+
+/* set navbar custom color */
+.navbar-custom {
+    background-color: #323232;
+}
+
+/* set nav-item to center by add a new class name*/
+.navbar-mod{
+    text-align: center;
+}
+
+.navi-link{
+    margin-top: 8px;
+    color: #ffffff;
+
+}
+
+.navbar-nav > li > a {
+    color: white;
+}
+
+.vehicleHeader{
+    margin-top: 25px;
+}
+
+.vehicleDetails{
+    width: 100%;
+    height: 850px;
+}
+
+.vehicleMaps{
+    width: 100%;
+    height: 850px;
+}
+
+#vecMaps{
+    width: 100%;
+    height: 700px;
+    background-color: yellow;
+}
+
+#content1{
+    width: 600px;
+    height: 400px;
+    background-color: white;
+}
+
+
+/*burger icons
+/* optional for different icons*/
+/*
+.navbar.navbar-2 .navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
+}
+*/
+

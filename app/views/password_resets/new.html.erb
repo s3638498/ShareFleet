@@ -1,0 +1,11 @@
+<div class="container-fluid col-md-8">
+  <div class="alert alert-primary" role="alert" style="margin-top:30px;">
+		<h2>Forgot password</h2>
+	</div>
+  <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+    <%= f.label "Enter in your registered email and we'll send you a password reset link!" %>
+    <%= f.email_field :email, class: 'form-control' %>
+    </br>
+    <%= f.submit "Send reset email", class: "btn btn-block btn-primary" %>
+    <% end %>
+</div>

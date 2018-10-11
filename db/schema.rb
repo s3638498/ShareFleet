@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_09_05_045619) do
-=======
-ActiveRecord::Schema.define(version: 2018_09_03_074239) do
->>>>>>> 03e24448c2bc9f1317cfc5981c03c3cec5ce250a
+ActiveRecord::Schema.define(version: 2018_09_27_174436) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -37,12 +33,44 @@ ActiveRecord::Schema.define(version: 2018_09_03_074239) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "pickup_time"
+    t.datetime "expected_dropoff_time"
+    t.datetime "dropoff_time"
+    t.boolean "payment_received"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "vehicle_id"
+    t.integer "user_id"
+    t.float "total"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["vehicle_id"], name: "index_bookings_on_vehicle_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.integer "num_park"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.string "author"
+    t.integer "administrator_id"
+    t.integer "enduser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_messages_on_administrator_id"
+    t.index ["enduser_id"], name: "index_messages_on_enduser_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string "code"
+    t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,8 +89,11 @@ ActiveRecord::Schema.define(version: 2018_09_03_074239) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
-    t.boolean "admin", default: false
     t.boolean "locked", default: false
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
+    t.integer "invitation_id"
+    t.string "recipient_email"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
@@ -78,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_09_03_074239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "location_id"
+    t.float "rate"
     t.index ["location_id"], name: "index_vehicles_on_location_id"
   end
 

@@ -7,12 +7,21 @@
 
 class Location < ApplicationRecord
   #Testing Geocoding by Address, result: With the default geocoder API, it is very inaccurate, more accurate to use the Coordinates.
-  #geocoded_by :address
-  #after_validation :geocode
   has_many :vehicles
   
+  geocoded_by :address
+  after_validation :geocode
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
+  
+  #geocoded_by :address
+  #reverse_geocoded_by :latitude, :longitude
+  #after_validation :geocode, :reverse_geocode
+  
+  #reverse_geocoded_by :latitude, :longitude
+  #after_validation :reverse_geocode
+  
+  #geocoded_by :address
+  #after_validation :geocode
   
   HUMANIZED_ATTRIBUTES = {
     :num_park => "Parking space"
@@ -24,6 +33,7 @@ class Location < ApplicationRecord
   
   validates :name, presence: true, uniqueness: true
   validates :num_park, presence: true, numericality: { greater_than: 0 }
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  validates :address, presence: true
+  #validates :latitude, presence: true
+  #validates :longitude, presence: true
 end
